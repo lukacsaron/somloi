@@ -56,7 +56,9 @@
     "wpackagist-plugin/woocommerce":"3.5.0-rc.1",
     "wpackagist-plugin/woocommerce-multilingual":"4.3.6",
     "wpackagist-plugin/wordpress-importer": "^0.6.4",
-    "wpackagist-plugin/wp-system-info": "^1.2"
+    "wpackagist-plugin/wp-system-info": "^1.2",
+    "wpackagist-plugin/simply-show-hooks": "^1.2",
+    "wpackagist-plugin/woocommerce-template-hints": "^1.0"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.0.2",
