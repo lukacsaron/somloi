@@ -46,12 +46,13 @@
     {
       "type": "package",
       "package": {
-        "name": "flashbird/lscf",
+        "name": "flashbird/live-search-and-custom-fields",
         "version": "2.4.1",
         "type": "wordpress-plugin",
+        "secure-http": "false",
         "dist": {
           "type": "zip",
-            "url": "http://auroraonline.hu/live-search-and-custom-fields.zip"
+            "url": "https://auroraonline.hu/live-search-and-custom-fields.zip"
         }
       }
     }
@@ -71,7 +72,7 @@
     "wpackagist-plugin/wp-system-info": "^1.2",
     "wpackagist-plugin/simply-show-hooks": "^1.2",
     "wpackagist-plugin/woocommerce-template-hints": "^1.0",
-    "wpackagist-plugin/live-search-custom-fields-lite": "^1.9"
+    "flashbird/live-search-and-custom-fields": "2.4.1"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.0.2",

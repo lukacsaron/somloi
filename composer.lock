@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b4c1ef288eb6e06d8eb12f470e15cffa",
+    "content-hash": "ed2c997dbecdc4c134f64505a1a7b842",
     "packages": [
         {
             "name": "composer/installers",
@@ -125,6 +125,17 @@
                 "zikula"
             ],
             "time": "2018-08-27T06:10:37+00:00"
+        },
+        {
+            "name": "flashbird/live-search-and-custom-fields",
+            "version": "2.4.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://auroraonline.hu/live-search-and-custom-fields.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "wordpress-plugin"
         },
         {
             "name": "johnpbloch/wordpress",
@@ -444,26 +455,6 @@
                 "environment"
             ],
             "time": "2018-07-29T20:33:41+00:00"
-        },
-        {
-            "name": "wpackagist-plugin/live-search-custom-fields-lite",
-            "version": "1.9.1",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/live-search-custom-fields-lite/",
-                "reference": "tags/1.9.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/live-search-custom-fields-lite.1.9.1.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/live-search-custom-fields-lite/"
         },
         {
             "name": "wpackagist-plugin/simply-show-hooks",
