@@ -1,8 +1,8 @@
 # Application
+!web/app/plugins/live-search-and-custom-fields/*/
 web/app/plugins/*
 !web/app/plugins/.gitkeep
 web/app/mu-plugins/*/
-!web/app/plugins/live-search-and-custom-fields/*/
 web/app/upgrade
 web/app/uploads/*
 !web/app/uploads/.gitkeep
