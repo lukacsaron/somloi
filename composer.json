@@ -42,6 +42,18 @@
             "url": "https://wpml.org/?download=6088&user_id=153507&subscription_key=7ad9b6b4eda871bccc6d8087a37adc54&t=1539195184&version=4.0.7"
         }
       }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "flashbird/lscf",
+        "version": "2.4.1",
+        "type": "wordpress-plugin",
+        "dist": {
+          "type": "zip",
+            "url": "http://auroraonline.hu/live-search-and-custom-fields.zip"
+        }
+      }
     }
   ],
   "require": {
