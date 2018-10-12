@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9bf91599f9611f19d17bbee84044b7f7",
+    "content-hash": "77d205b8b0380e3beb70ba095f04f39a",
     "packages": [
         {
             "name": "composer/installers",
@@ -444,6 +444,26 @@
                 "environment"
             ],
             "time": "2018-07-29T20:33:41+00:00"
+        },
+        {
+            "name": "wpackagist-plugin/live-search-custom-fields-lite",
+            "version": "1.9.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/live-search-custom-fields-lite/",
+                "reference": "tags/1.9.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/live-search-custom-fields-lite.1.9.1.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/live-search-custom-fields-lite/"
         },
         {
             "name": "wpackagist-plugin/simply-show-hooks",
