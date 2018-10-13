@@ -22,6 +22,6 @@
     }
   },
   "config": {
-    "devUrl": "http://n-somloi.local"
+    "devUrl": "https://n-somloi.local"
   }
 }

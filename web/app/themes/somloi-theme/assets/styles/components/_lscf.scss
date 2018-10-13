@@ -27,6 +27,40 @@
     }
 }
 
+.quantity_selector {
+    border: 2px solid #c12a1e;
+    position: absolute;
+    width: 40px;
+    height: 39px;
+    display: block;
+    z-index: 99;
+    font-size: 10px;
+    line-height: 2;
+    background: #fff;
+  
+    top: 61px;
+    text-align: center;
+  
+    transform: translateY(110%);
+    -webkit-transform: translateY(110%);
+    -moz-transform: translateY(110%);
+    -ms-transform: translateY(110%);
+    -o-transform: translateY(110%);
+    
+}
+
+.lscf-template3-woocommerce-display:hover .quantity_selector {
+      transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    -webkit-transition: all 0.4s cubic-bezier(0.28, 0, 0.07, 1);
+    -moz-transition: all 0.4s cubic-bezier(0.28, 0, 0.07, 1);
+    -ms-transition: all 0.4s cubic-bezier(0.28, 0, 0.07, 1);
+    -o-transition: all 0.4s cubic-bezier(0.28, 0, 0.07, 1);
+}
+
 
 
 .kutyakaka {

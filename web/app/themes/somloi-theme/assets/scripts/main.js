@@ -19,6 +19,8 @@
     'common': {
       init: function() {
         // JavaScript to be fired on all pages
+        
+        
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
@@ -75,3 +77,33 @@
   $(document).ready(UTIL.loadEvents);
 
 })(jQuery); // Fully reference jQuery after this point.
+
+function addQuantity() {
+  console.log('addQuantity triggered');
+    jQuery('.lscf-template3-add-to-cart').click(function(){
+          var $i = jQuery(this).attr("data-product_id");
+          console.log('product id var populated');
+          var $input_q = jQuery("#quantity-"+$i).val();
+          console.log('input quantity var populated');
+          jQuery(this).data("data-quantity", $input_q);
+          this.href += $input_q;
+          console.log('href changed');
+        });
+}
+
+function addQuantity2() {
+    jQuery('input').click(function(){
+          var $i = jQuery(this).attr("data-product_id");
+          console.log('product id var populated');
+          var $input_q = jQuery(this).val();
+          console.log('input quantity var populated');
+          jQuery(this).data("data-quantity", $input_q);
+          this.href += $input_q;
+          console.log('href changed');
+        });
+}
+
+jQuery(document).ajaxComplete(function() {
+    console.log('ajax completed');
+    setTimeout(addQuantity, 1000)
+});
