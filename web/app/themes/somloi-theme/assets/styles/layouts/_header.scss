@@ -1,0 +1,25 @@
+// Navigation
+
+.nav-primary {
+  background-color: $primary-color;
+  height: 40px;
+  font-size: 1.1em;
+  line-height: 2.3em;
+  
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  
+    .menu-item {
+      display: inline-block;
+      flex-grow: 1;
+      min-width: 80px;
+      text-align: center;
+      
+        a {
+          color: white;
+          text-transform: uppercase;
+        }
+    }
+}

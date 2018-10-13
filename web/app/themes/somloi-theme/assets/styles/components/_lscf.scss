@@ -1,0 +1,34 @@
+.lscf-template3-post {
+   border:1px solid white;
+   padding: 10px 20px 0px 20px;
+   margin-bottom: 5vh;
+  
+  &:hover {
+    border:1px solid black;
+  }
+  
+    .lscf-template3-featured-image {
+       background-color: white !important; 
+    }
+
+    // set height of product image container
+    .lscf-template3-image {
+        padding-top: 44% !important;
+    }
+
+    .lscf-template3-link {
+      text-align: left !important;
+    }
+
+    .lscf-template3-li-title {
+      padding: 0.2em 0;
+      height: inherit;
+
+    }
+}
+
+
+
+.kutyakaka {
+  display:none;
+}
