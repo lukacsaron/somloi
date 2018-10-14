@@ -78,6 +78,8 @@
 
 })(jQuery); // Fully reference jQuery after this point.
 
+var flag = true;
+
 function addQuantity() {
   console.log('addQuantity triggered');
     jQuery('.lscf-template3-add-to-cart').click(function(){
@@ -88,22 +90,40 @@ function addQuantity() {
           jQuery(this).data("data-quantity", $input_q);
           this.href += $input_q;
           console.log('href changed');
+          
         });
 }
 
-function addQuantity2() {
-    jQuery('input').click(function(){
-          var $i = jQuery(this).attr("data-product_id");
-          console.log('product id var populated');
-          var $input_q = jQuery(this).val();
-          console.log('input quantity var populated');
-          jQuery(this).data("data-quantity", $input_q);
-          this.href += $input_q;
-          console.log('href changed');
-        });
+// function addQuantity2() {
+  //  jQuery('input').click(function(){
+  //        var $i = jQuery(this).attr("data-product_id");
+  //        console.log('product id var populated');
+  //        var $input_q = jQuery(this).val();
+  //        console.log('input quantity var populated');
+   //       jQuery(this).data("data-quantity", $input_q);
+    //      this.href += $input_q;
+    //      console.log('href changed');
+    //    });
+// }
+
+jQuery(document).ajaxSuccess(function() {
+    console.log('ajax Success');
+    if(flag){ 
+    setTimeout(addQuantity, 2000);
+    }
+});
+
+jQuery(document).ajaxComplete(function( event, xhr, settings ) {
+    console.log('ajax Complete');
+    console.log('Triggered ajaxComplete handler. The result is' +
+      xhr.responseText );
+  
+});
+
+function consolewrite() {
+  console.log("clicked on input box");
 }
 
-jQuery(document).ajaxComplete(function() {
-    console.log('ajax completed');
-    setTimeout(addQuantity, 1000)
+jQuery('input').click(function(){
+  consolewrite();
 });
