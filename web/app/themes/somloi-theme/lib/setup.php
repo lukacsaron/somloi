@@ -35,6 +35,8 @@ function setup() {
   // http://codex.wordpress.org/Function_Reference/set_post_thumbnail_size
   // http://codex.wordpress.org/Function_Reference/add_image_size
   add_theme_support('post-thumbnails');
+  add_image_size('img-post-thumb',  240,  240, true);
+
 
   // Enable post formats
   // http://codex.wordpress.org/Post_Formats
@@ -108,3 +110,5 @@ function assets() {
   wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
 }
 add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);
+
+add_theme_support('woocommerce');

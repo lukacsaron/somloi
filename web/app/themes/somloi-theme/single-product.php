@@ -19,8 +19,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
-
-get_header( 'shop' ); ?>
+get_template_part('templates/page', 'header'); ?>
 
 	<?php
 		/**
@@ -53,9 +52,9 @@ get_header( 'shop' ); ?>
 		 *
 		 * @hooked woocommerce_get_sidebar - 10
 		 */
-		do_action( 'woocommerce_sidebar' );
+		get_template_part('templates/page', 'sidebar'); 
 	?>
 
-<?php get_footer( 'shop' );
+<?php get_template_part('templates/page', 'footer'); 
 
 /* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */

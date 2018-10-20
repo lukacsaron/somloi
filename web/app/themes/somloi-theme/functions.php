@@ -15,7 +15,10 @@ $sage_includes = [
   'lib/setup.php',     // Theme setup
   'lib/titles.php',    // Page titles
   'lib/wrapper.php',   // Theme wrapper class
-  'lib/customizer.php' // Theme customizer
+  'lib/customizer.php', // Theme customizer
+  'lib/custom_woo.php', // aron edit custom woo shortcodes
+  'lib/display-post-shortcode.php' // aron edit display post
+  // 'lib/remove-wysiwyg.php' // remove wyswyg function
 ];
 
 foreach ($sage_includes as $file) {

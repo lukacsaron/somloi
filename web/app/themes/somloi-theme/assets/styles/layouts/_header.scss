@@ -27,3 +27,20 @@
         }
     }
 }
+
+.active-header {
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+  .header-right {
+    text-align: right;
+  }
+
+  .header-left {
+    text-align: left;
+  }
+
+  .header-center {
+    text-align: center;
+  }
+}

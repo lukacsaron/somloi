@@ -1,0 +1,199 @@
+.woocommerce-loop-product__title {
+  color: black;
+}
+
+.single-product {
+  .page-header {
+    display: none;
+  }
+  
+  .entry-summary {
+    width: 38% !important;
+    border-left: 2px solid #bd262b;
+    background: $light-red;
+    padding: 40px 0 40px 60px;
+    @include media-breakpoint-down(sm) {
+      width: 100% !important;
+    }
+
+    .product-pinceszet {
+      text-transform: uppercase;
+      margin-bottom: 0;
+    }
+    
+    .price {
+      color: $matte-green !important;
+    }
+  }
+  
+  .woocommerce-product-gallery {
+    margin-top: 8%;
+    margin-left: 5%;
+    &:after {
+      content:'';
+      width: 110%;
+      height: 130%;
+      position: absolute;
+      background-image: url(/app/themes/somloi-theme/assets/images/shadow.png);
+      background-repeat: no-repeat;
+      background-size: 100%;
+      margin-top: -78px;
+      z-index: -30;
+      margin-left: -10px;
+      
+      @include media-breakpoint-down(md) {
+        margin-top: 48px;
+      }
+    }
+  }
+}
+
+.woocommerce-breadcrumb {
+  border-bottom: 2px solid #bd262b;
+  padding-bottom: 14px !important;
+  margin-bottom: 30px !important;
+}
+
+.products {
+  display: block;
+  
+  .product {
+    padding: 10px !important;    
+    margin: 0 !important;
+    width: inherit !important;
+    border: 1px solid white;
+    
+    &:hover {
+      border: 1px solid black;
+      
+      .add_to_cart_button {
+        transform: translateY(0%);
+        -webkit-transform: translateY(0%);
+        -moz-transform: translateY(0%);
+        -ms-transform: translateY(0%);
+        -o-transform: translateY(0%);
+      }
+    }
+    
+    .product-container {
+      margin: 10px;
+      overflow: hidden;
+    }
+    .woocommerce-Price-amount {
+      color: black !important;
+    }
+    .add_to_cart_button {
+      background: $primary-color !important;
+      font-size: 1em !important;
+      line-height: 2em !important;
+      height: 2.4em;
+      padding: .2em 10px .2em 0 !important;
+      text-decoration: none !important;
+      color: #fff !important;
+      overflow: hidden !important;
+      width: 100%;
+      text-align: center;
+      bottom: 0;
+      left: 0 !important;
+      display: block !important;
+      border-radius: 0 !important;
+      font-weight: 300 !important;
+      
+      transform: translateY(110%);
+      -webkit-transform: translateY(110%);
+      -moz-transform: translateY(110%);
+      -ms-transform: translateY(110%);
+      -o-transform: translateY(110%);
+      -webkit-transition: all 0.4s cubic-bezier(0.28, 0, 0.07, 1);
+      -moz-transition: all 0.4s cubic-bezier(0.28, 0, 0.07, 1);
+      -ms-transition: all 0.4s cubic-bezier(0.28, 0, 0.07, 1);
+      -o-transition: all 0.4s cubic-bezier(0.28, 0, 0.07, 1);
+    }
+  }
+}
+
+.woocommerce {
+  .button {
+    border-radius: 0 !important;
+    &.alt {
+      background-color: $primary-color !important;
+      border: 2px solid $primary-color !important;
+      &:hover {
+        background-color: white !important;
+        border: 2px solid $primary-color !important;
+        color: $primary-color !important;
+      }
+    }
+  }
+  
+  span.onsale {
+    min-height: 1.236em !important;
+    min-width: 3.236em !important;
+    font-size: 1em !important;
+    font-weight: 500 !important;
+    line-height: 1.5 !important;
+    border-radius: 0 !important;
+    background-color: $primary-color !important;
+    font-size: .857em !important;
+  }
+}
+
+.woocommerce {
+  display: block;
+  
+  .quantity {
+    .input-text {
+      border: 2px solid $primary-color !important;
+      height: 39px !important;
+    }
+  }
+  
+  .woocommerce-tabs {
+    display: block;
+    .tabs {
+      &:before {
+        border-bottom: 2px solid $primary-color !important;
+      }
+    }
+    
+    li {
+      border: 2px solid $primary-color !important;
+      border-radius: 0 !important;
+      background: white !important;
+      border-bottom-color: white !important;
+      
+      a {
+        color: $primary-color !important;
+      }
+      
+      &.active { 
+        background: $primary-color !important;
+        border-bottom-color: $primary-color !important;
+        
+        a {
+          color: white !important;
+        }
+      }
+      
+      &:before, &:after {
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+      
+      
+    }
+    
+  }
+}
+
+.tagged_as {
+  a {
+    border: 2px solid $primary-color;
+    padding: 5px 10px;
+    margin: 0 2px;
+    color: $primary-color;
+    font-style: italic;
+    font-size: 11px;
+  }
+}
