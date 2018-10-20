@@ -26,49 +26,27 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 ?>
 
 
-<?php
-// override woo columns settings with added bootstrap classes to loop elements
-    if(
-        isset( $GLOBALS[ 'roka_woocommerce_loop_template' ] ) &&
-        $GLOBALS[ 'roka_woocommerce_loop_template' ] == '2'
-    ) {
-      ?>
-        <li <?php wc_product_class('col-md-6 col-sm-6'); ?>>
-      <?php
-    }
-?>
-          
-<?php
-// override woo columns settings with added bootstrap classes to loop elements
-    if(
-        isset( $GLOBALS[ 'roka_woocommerce_loop_template' ] ) &&
-        $GLOBALS[ 'roka_woocommerce_loop_template' ] == '4'
-    ) {
-      ?>
-        <li <?php wc_product_class('col-md-3 col-sm-6'); ?>>
-      <?php
-    }
-?>
-          
-<?php
-// override woo columns settings with added bootstrap classes to loop elements
-    if(
-        isset( $GLOBALS[ 'roka_woocommerce_loop_template' ] ) &&
-        $GLOBALS[ 'roka_woocommerce_loop_template' ] == '1'
-    ) {
-      ?>
-        <li <?php wc_product_class('col-md-12 col-sm-6'); ?>>
-      <?php
-    }
-?>
           
 <?php
 // override woo columns settings with added bootstrap classes to loop elements
     if(
         isset( $GLOBALS[ 'roka_woocommerce_loop_template' ] )
     ) {
+      
+      if($GLOBALS[ 'roka_woocommerce_loop_template' ] == '1') {
+        $colnumber = '12';
+      }
+      elseif($GLOBALS[ 'roka_woocommerce_loop_template' ] == '2') {
+        $colnumber = '6';
+      }
+      elseif($GLOBALS[ 'roka_woocommerce_loop_template' ] == '4') {
+        $colnumber = '3';
+      }
+      else {
+        $colnumber = '6';
+      }
       ?>
-        <li <?php wc_product_class('col-md-3 col-sm-6'); ?>>
+        <li <?php wc_product_class('col-md-'. $colnumber . ' col-sm-6'); ?>>
       <?php
     }
           

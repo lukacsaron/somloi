@@ -33,6 +33,40 @@
       },
       finalize: function() {
         // JavaScript to be fired on the home page, after the init JS
+        $('.home-slider').slick({
+          autoplaySpeed : 1000,
+          arrows        : false,
+          dots          : false
+        });
+        
+        $('.multiple .products').slick({
+          infinite: true,
+          slidesToShow: 4,
+          slidesToScroll: 3
+        });
+        
+       // media query event handler
+          if (matchMedia) {
+          const mq = window.matchMedia("(max-width: 720px)");
+          mq.addListener(WidthChange);
+          WidthChange(mq);
+          }
+
+          // media query change
+          function WidthChange(mq) {
+          if (mq.matches) {
+           jQuery('.multiple .products').slick('unslick');
+          } else {
+          $('.multiple .products').slick({
+          infinite: true,
+          slidesToShow: 4,
+          slidesToScroll: 3
+        });
+          }
+
+          }
+
+    
       }
     },
     // About us page, note the change from about-us to about_us.
