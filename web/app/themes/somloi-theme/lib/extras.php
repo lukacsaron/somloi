@@ -100,3 +100,6 @@ add_action( 'after_setup_theme', function() {
   add_theme_support( 'wc-product-gallery-lightbox' );
   add_theme_support( 'wc-product-gallery-slider' );
 } ); 
+
+
+add_action( 'woocommerce_order_details_after_order_table', 'woocommerce_order_again_button' );

@@ -1,0 +1,13 @@
+footer {
+  background: $primary-color;
+  height: 200px;
+  
+  .trust-row {
+    background: white;
+    border-top: 2px solid $primary-color;
+    
+    div {
+      padding: 10px;
+    }
+  }
+}

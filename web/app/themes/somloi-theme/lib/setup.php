@@ -91,6 +91,7 @@ function display_sidebar() {
     is_page_template('template-custom.php'),
     is_page_template('template-custom.php'),
     is_product(),
+    is_account_page(),
     is_page_template('single-product.php')
   ]);
 

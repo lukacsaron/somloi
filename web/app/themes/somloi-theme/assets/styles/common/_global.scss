@@ -12,3 +12,23 @@
 body {
   font-family: 'Roboto', sans-serif;
 }
+
+.slick-prev {
+      margin-left: -110px;
+    top: 0;
+}
+
+.slick-next {
+  margin-right: -80px;
+    top: 0;
+    position: absolute;
+    right: 0;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.align-left {
+  text-align: left;
+}
