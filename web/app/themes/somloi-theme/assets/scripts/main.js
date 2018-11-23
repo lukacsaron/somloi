@@ -45,14 +45,7 @@
           slidesToScroll: 3
         });
         
-       // media query event handler
-          if (matchMedia) {
-          const mq = window.matchMedia("(max-width: 720px)");
-          mq.addListener(WidthChange);
-          WidthChange(mq);
-          }
-
-          // media query change
+        // media query change
           function WidthChange(mq) {
           if (mq.matches) {
            jQuery('.multiple .products').slick('unslick');
@@ -65,6 +58,14 @@
           }
 
           }
+       // media query event handler
+          if (matchMedia) {
+          const mq = window.matchMedia("(max-width: 720px)");
+          mq.addListener(WidthChange);
+            
+          }
+
+          
 
     
       }
