@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c7cda0789daa04cd7c38e95262e6f153",
+    "content-hash": "18956f3380d37f7e8bc2c0851d567c83",
     "packages": [
         {
             "name": "composer/installers",
@@ -643,6 +643,26 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/regenerate-thumbnails/"
+        },
+        {
+            "name": "wpackagist-plugin/simple-woocommerce-csv-loader",
+            "version": "2.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/simple-woocommerce-csv-loader/",
+                "reference": "trunk"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/simple-woocommerce-csv-loader.zip?timestamp=1540413063",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/simple-woocommerce-csv-loader/"
         },
         {
             "name": "wpackagist-plugin/simply-show-hooks",
