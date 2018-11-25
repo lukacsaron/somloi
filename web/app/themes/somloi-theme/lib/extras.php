@@ -103,3 +103,64 @@ add_action( 'after_setup_theme', function() {
 
 
 add_action( 'woocommerce_order_details_after_order_table', 'woocommerce_order_again_button' );
+
+
+// reorder tabs woocommerce products
+
+add_filter( 'woocommerce_product_tabs', function ( $tabs ) {
+	$tab_list = [
+		'description'            => 20,
+		'additional_information' => 10,
+		'reviews'                => 60,
+	];
+	foreach ( $tab_list as $tab => $priority ) {
+		if ( isset( $tabs[ $tab ] ) ) {
+			$tabs[ $tab ]['priority'] = $priority;
+		}
+	}
+	return $tabs;
+}, 98 );
+
+
+
+// introduce show child categories function
+
+add_filter( 'terms_clauses', function ( $pieces, $taxonomies, $args )
+{
+    // Bail if we are not currently handling our specified taxonomy
+    if ( !in_array( 'speight_plans', $taxonomies ) )
+        return $pieces;
+
+    // Check if our custom argument, 'wpse_parents' is set, if not, bail
+    if (    !isset ( $args['wpse_parents'] )
+         || !is_array( $args['wpse_parents'] )
+    ) 
+        return $pieces;
+
+    // If  'wpse_parents' is set, make sure that 'parent' and 'child_of' is not set
+    if (    $args['parent']
+         || $args['child_of']
+    )
+        return $pieces;
+
+    // Validate the array as an array of integers
+    $parents = array_map( 'intval', $args['wpse_parents'] );
+
+    // Loop through $parents and set the WHERE clause accordingly
+    $where = [];
+    foreach ( $parents as $parent ) {
+        // Make sure $parent is not 0, if so, skip and continue
+        if ( 0 === $parent )
+            continue;
+
+        $where[] = " tt.parent = '$parent'";
+    }
+
+    if ( !$where )
+        return $pieces;
+
+    $where_string = implode( ' OR ', $where );
+    $pieces['where'] .= " AND ( $where_string ) ";
+
+    return $pieces;
+}, 10, 3 );

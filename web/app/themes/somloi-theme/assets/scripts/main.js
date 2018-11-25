@@ -20,7 +20,11 @@
       init: function() {
         // JavaScript to be fired on all pages
         
+        $('#menu-main-menu .menu-shop').hover(
+            function(){$('#submenu-borok').toggleClass('hover');}
+          );
         
+
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired

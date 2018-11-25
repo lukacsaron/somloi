@@ -31,6 +31,24 @@
 .active-header {
   margin-top: 30px;
   margin-bottom: 30px;
+  .sales-btns {
+      text-transform: uppercase;
+      a {
+        display: block;
+        color: black;
+      }
+    .cart {
+      display:inline-block;
+      padding-right: 20px;
+    }
+    .value {
+      color: $matte-green;
+      display:inline-block;
+    }
+    .checkout {
+      display: block;
+    }
+    }
 
   .header-right {
     text-align: right;
@@ -42,5 +60,20 @@
 
   .header-center {
     text-align: center;
+  }
+}
+
+#submenu-borok {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    top: 0;
+    left: 0;
+    background: #f5e7e7;
+    z-index: 99;
+    display: none;
+  
+  &.hover {
+      display: block !important;
   }
 }
