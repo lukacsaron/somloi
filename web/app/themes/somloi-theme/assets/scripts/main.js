@@ -20,9 +20,9 @@
       init: function() {
         // JavaScript to be fired on all pages
         
-        $('#menu-main-menu .menu-shop').hover(
-            function(){$('#submenu-borok').toggleClass('hover');}
-          );
+        jQuery('#menu-main-menu .menu-shop, #submenu-borok').hover(
+            function(){jQuery('#submenu-borok').toggleClass('hover');}
+          ); 
         
 
       },
