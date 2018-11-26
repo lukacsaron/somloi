@@ -1,0 +1,67 @@
+.customRange{
+    width:100%;
+    height:6px;
+    background:#eeeeee;
+    margin:20px 0px;
+    position:relative;
+    margin-bottom:40px;
+    @include border-radius(6px);
+    & label{
+        color:$themeColor_1;
+        font:normal normal 0.82em/1em $openSans_semiBold;  
+    }
+    & .startPoint{
+        display:block;
+        cursor:pointer;
+		height:24px; 
+		min-width:22px;
+		width:22px;
+        position:absolute; left:0; top:0;
+        margin-top:-9px;
+        margin-left:-10px;
+        background:url("images/bullet.png") no-repeat;
+        z-index:5;
+        & label {
+            margin-top:27px;
+            display:block;
+            word-wrap:normal;
+            // &:after{content:"$"}
+        }
+    }
+    & .range_draggable{
+        position:relative;
+        height:100%; 
+        background:$themeColor_1;
+        z-index:1;
+        
+        & label{
+            margin-top:27px;
+            display:block;
+            word-wrap:normal;
+			&.long-num{
+				margin-left:-17px;
+			}
+			word-wrap:normal;
+            // &:after{content:"$"}
+        }
+    }
+    & .draggablePoint{
+        
+		width:24px; height:24px; 
+        position:absolute; right:0; top:0; margin-top:-9px; margin-right:-10px; 
+        background:url("images/bullet.png") no-repeat;
+        cursor:pointer;
+        z-index:5;
+
+		& label {
+			
+			display:block; margin-top:27px;
+			word-wrap:normal;
+
+			&.long-num{
+				margin-left:-17px;
+			}
+		}
+
+    }
+}

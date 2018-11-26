@@ -1,0 +1,55 @@
+<script type="text/html" id="px-filter-custom-fields-template">
+	
+	<div class="custom-fields-container display-fields-as">
+		
+		<div class="tax-subcategs-check-all-container">
+			<input class="px-checkbox tax-list-check-all-checkbox" id="px-custom-fields-checkbox-all" type="checkbox">
+			<label class="px-checkbox-label tax-list-check-all" for="px-custom-fields-checkbox-all"></label>
+			<strong>Select all</strong>
+		</div>
+
+		<div>
+			{{#items.fields.fields}}
+			<div class="px-inline custom-field-view">
+				{{#multiple_display}}
+				<select class="custom-select-type-1" name="pxfid_{{ID}}_display_as" data-class="{{^active}}inactive{{/active}}">
+					{{#display_as}}
+						<option {{#display_as_set_active}}{{display}}__{{value}}{{/display_as_set_active}} value="{{value}}">{{name}}</option>
+					{{/display_as}}
+				</select>
+				{{/multiple_display}}
+
+				{{^multiple_display}}
+					<select class="custom-select-type-1" data-class="not-available" >
+						<option>Default</option>
+					</select>
+				{{/multiple_display}}
+				
+				<span>
+					<input {{#set_checkbox_as_active}}{{active}}{{/set_checkbox_as_active}} class="px-checkbox" type="checkbox" id="{{value}}" name="pxfid_{{ID}}" value="{{value}}">
+					<label class="px-checkbox-label" for="{{value}}"></label>{{name}}
+				</span>
+				
+			</div>
+			{{/items.fields.fields}}
+			
+			{{#items.woo_fields}}
+			<div class="px-inline custom-field-view">
+
+				<select class="custom-select-type-1" name="{{slug}}_display_as" data-class="{{^active}}inactive{{/active}}">
+					<option {{#display_as_set_active}}{{display}}__default{{/display_as_set_active}} value="default">Display as</option>
+					<option {{#display_as_set_active}}{{display}}__px_radio_box{{/display_as_set_active}} value="px_radio_box">Radio</option>
+					<option {{#display_as_set_active}}{{display}}__px_select_box{{/display_as_set_active}} value="px_select_box">Dropdown</option>
+				</select>
+
+				<input {{#set_checkbox_as_active}}{{active}}{{/set_checkbox_as_active}} class="px-checkbox" type="checkbox" id="{{value}}" name="{{slug}}" value="{{value}}">
+				<label class="px-checkbox-label" for="{{value}}"></label>{{name}}
+				
+			</div>
+
+			{{/items.woo_fields}}
+
+		</div>
+	</div>
+
+</script>

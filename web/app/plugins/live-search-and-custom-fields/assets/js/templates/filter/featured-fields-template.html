@@ -1,0 +1,31 @@
+<script type="text/html" id="px-filter-featured-fields-template">
+	
+	
+	<ul>
+		{{#items}}
+			<li>
+				<input 
+					{{#set_as_active}}{{active}}{{/set_as_active}}
+					type="radio" 
+					id="{{value}}_radio" 
+					class="px_radiobox-input" 
+					name="px_filter-featured-posts-label" 
+					value="{{value}}"/>
+				<label class="px_radiobox" for="{{value}}_radio"></label>{{name}}
+			</li>
+		{{/items}}
+
+		{{#woo_items}}
+			<li>
+				<input 
+					{{#set_as_active}}{{active}}{{/set_as_active}}
+					type="radio" id="px-{{ID}}"
+					class="px_radiobox-input"
+					name="px_filter-featured-posts-label"
+					value="{{value}}" />
+				<label class="px_radiobox" for="px-{{ID}}"></label>{{name}}
+			</li>
+		{{/woo_items}}
+	</ul>
+
+</script>

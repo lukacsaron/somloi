@@ -1,0 +1,9 @@
+.sm_beta_batch_update_field {
+	line-height: 1em;
+}
+
+#batchmod_sm_editor_grid input[id^="batch_update_value"] {
+	height: 28px;
+	width:15em !important;
+	border-radius:0.3em;
+}

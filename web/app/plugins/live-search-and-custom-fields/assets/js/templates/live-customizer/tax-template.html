@@ -1,0 +1,43 @@
+<script type="text/html" id="template-tax">
+	
+	<div class="lscf-extrasidebar-template" data-fields-type="taxonomies-listing">
+		{{#items}}
+
+		<div class="lscf-taxonomies-block lscf-post-tax{{index}}">
+
+			<div class="display-fields-as parent-taxonomies-view-type">
+			
+				<strong class="lscf-tax-headline">{{taxonomy}}</strong>
+			
+				<div class="tax-categories-container">
+					<!--<div class="left-side">
+						<input class="px-checkbox tax-list-check-all-checkbox" id="{{taxonomy}}" type="checkbox">
+						<label class="px-checkbox-label tax-list-check-all" for="{{taxonomy}}"></label><strong>Select all</strong>
+					</div>-->
+					
+					<div class="right-side">
+						<ul class="px-post-categories" data-active-parent-count="0">
+							{{#categs}}
+							<li>
+								<input 
+									{{#set_tax_term_as_active}}{{term_id}}-{{taxonomy}}{{/set_tax_term_as_active}}
+									class="px-checkbox" 
+									id="{{taxonomy}}-{{slug}}" 
+									type="checkbox" name="{{taxonomy}}_posttax" 
+									data-taxonomy="{{taxonomy}}"  
+									value="{{term_id}}!#{{name}}!#"
+								/>{{name}}
+
+								<label class="px-checkbox-label green" for="{{taxonomy}}-{{slug}}"></label>
+							</li>
+							{{/categs}}
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<hr class="silver">
+		{{/items}}
+	</div>
+</script>

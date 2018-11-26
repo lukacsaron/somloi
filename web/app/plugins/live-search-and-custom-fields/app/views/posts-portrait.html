@@ -1,0 +1,95 @@
+
+<div ng-repeat="post in filterPostsTemplate.posts" class="lscf-portrait columns-{{pluginSettings.filterSettings.theme.columns}}">
+        
+	<div class="block-featuredImage">
+		
+		<div class="post-featuredImage" ng-class="{'noPhoto': !post.featured_portrait}">
+			
+			<div class="px-flipper">
+				
+				<div class="flipper">
+					
+					<div class="flip-front">
+						
+						<a class="lscf-portrait-featured-img-link" style="background:url({{post.featuredImage}}); background-size:cover; background-position:center;" href="{{post.permalink}}">
+							
+						</a>
+
+						<div class="block-price" ng-if="featuredLabel">
+					
+							<label class="lscf-template-variation-featured" ng-if="post.featured_label.field_type == 'px_cf_relationship'">
+
+								<span ng-if="variations[post.featured_label.ID]">
+									<span class="lscf-template-variation-field" ng-repeat="field in post.featured_label.data[variations[post.featured_label.ID].active].fields">{{field.val}}</span>
+								</span>
+
+								<span ng-if="!variations[post.featured_label.ID]">
+									<span class="lscf-template-variation-field" ng-repeat="field in post.featured_label.data.default.fields">{{field.val}}</span>
+								</span>
+
+							</label>
+
+							<label ng-if="post.featured_label.field_type != 'px_cf_relationship'">{{post.featured_label.value}}</label>
+						</div>
+
+					</div>
+
+					<div class="flip-back">
+						<a class="lscf-portrait-featured-img-link" style="background:url({{post.featuredImage}}); background-size:cover; background-position:center;" href="{{post.permalink}}">
+							
+						</a>
+						
+						<div class="post-overlay" ng-class="{'small':!featuredLabel}">
+
+							<div class="eyeglass"></div>
+
+							<div class="overlay-container">
+
+								<label class="block-price-back" ng-if="featuredLabel" >
+									<label class="lscf-template-variation-featured" ng-if="post.featured_label.field_type == 'px_cf_relationship'">
+
+										<span ng-if="variations[post.featured_label.ID]">
+											<span class="lscf-template-variation-field" ng-repeat="field in post.featured_label.data[variations[post.featured_label.ID].active].fields">{{field.val}}</span>
+										</span>
+
+										<span ng-if="!variations[post.featured_label.ID]">
+											<span class="lscf-template-variation-field" ng-repeat="field in post.featured_label.data.default.fields">{{field.val}}</span>
+										</span>
+
+									</label>
+
+									<label ng-if="post.featured_label.field_type != 'px_cf_relationship'">{{post.featured_label.value}}</label>
+									
+								</label>
+
+								<b class="ov-title" href="{{post.permalink}}" ng-bind-html="post.title.long"></b>
+
+								<div class="caption">
+									<div class="ov-content" ng-bind-html="post.short_content"></div>
+									<div ng-bind-html="post.lscf_shortcodes"></div>
+								</div>
+
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		
+		
+
+	</div>
+
+	<div class="caption-block">
+
+		<div class="caption-container">
+			<a ng-href="{{post.permalink}}" class="list-view lscf-title" ng-bind-html="post.title.long"></a>
+		</div>
+		
+	</div>
+
+</div>

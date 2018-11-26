@@ -1,0 +1,19 @@
+
+<div class="lscf-template1-posts-wrapper lscf-template1-cols-{{pluginSettings.filterSettings.theme.columns}}">
+
+	<div class="lscf-template1-post" ng-repeat="post in filterPostsTemplate.posts">
+
+		<a href="{{post.permalink}}">
+
+			<div class="lscf-template1-image" style="background-image: url('{{post.featuredImage}}');">
+
+				<span class="lscf-template1-hline">
+				</span><span class="lscf-template1-vline"></span>
+				<div class="lscf-basic-grid-cf" ng-bind-html="post.lscf_shortcodes"></div>
+
+			</div>
+			<div class="lscf-li-title" ng-bind-html="post.title.long"></div>
+		</a>
+    </div>
+
+</div>

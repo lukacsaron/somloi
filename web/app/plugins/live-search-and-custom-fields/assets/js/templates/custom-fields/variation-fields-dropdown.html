@@ -1,0 +1,26 @@
+<script type="text/html" id="lscf-variations-cf-template">
+
+	<div class="lscf-variation-cf">
+
+		<label>Select custom field that variates.<i>( dropdowns, checkboxes, radio buttons)</i></label>
+
+		<select name="{{id}}-cf-id[{{cf_index}}]" class="lscf-variation-fields">
+			
+			<option value="0">Select custom field</option>
+
+			{{#fields}}
+			<option value="{{value}}">{{name}}</option>
+			{{/fields}}
+
+		</select>
+
+		<br/>
+		<label>Connect items with selected variation above:</label>
+
+		<div class="lscf-variation-rel-items-container">
+
+		</div>
+
+	</div>
+
+</script>

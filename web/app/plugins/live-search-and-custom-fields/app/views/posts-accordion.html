@@ -1,0 +1,34 @@
+<div ng-repeat="post in filterPostsTemplate.posts" class="lscf-accordion-post">
+
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 lscf-post-container">
+
+			<div class="row">
+
+				<div class="col-sm-12 col-md-12 accordion-headline">
+					
+					<div class="px-cross">
+						<span class="px-cross-child-1"></span>
+						<span class="px-cross-child-2"></span>
+					</div>
+
+					<a href="{{post.permalink}}" class="list-view lscf-title" ng-bind-html="post.title.long"></a>
+
+				</div>
+
+			</div>
+
+			<div class="post-caption">
+
+				<div class="caption">
+					<div ng-bind-html="post.full_content"></div>
+					<div ng-bind-html="post.lscf_shortcodes"></div>
+				</div>
+
+				<a ng-if="pluginSettings.filterSettings.theme.link_type == 'view-more' " href="{{post.permalink}}">{{pluginSettings.generalSettings.writing.see_more}}</a>
+			</div>
+
+		</div>
+	</div>
+</div>

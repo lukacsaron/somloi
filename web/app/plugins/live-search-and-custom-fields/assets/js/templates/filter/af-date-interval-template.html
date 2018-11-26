@@ -1,0 +1,37 @@
+<script type="text/html" id="px-filter-additional-fields-template">
+
+	<div class="px_additional-fields-row px_date-interval">
+	
+		<div class="left-side">
+			<label>Type:</label><strong>Date Interval</strong><br/>
+			<span class="px_remove px_remove-additional-field">Remove</span>
+		</div>
+	
+		<div class="right-side">
+			
+			<div class="px-frow">
+				<label>Field Name</label>
+				<input class="px_sanitize-OnBlur" type="text" name="px_date-interval-name-{{di_field_length}}" value=""/>
+			</div>				
+
+			<div class="px-frow">
+				
+				<input class="px_sanitized-key" type="hidden" name="px_date-interval-key-{{di_field_length}}" value=""/>
+				<label class="wide">Show Date Interval for:</label>
+				
+				<div class="px_custom-fields-date-interval float-right">
+
+					{{#items}}
+						<input class="px_radiobox-input" name="px_date-interval-fieldID-{{di_field_length}}" type="radio" id="{{ID}}-{{di_field_length}}" value="{{value}}">
+						<label class="px_radiobox" for="{{ID}}-{{di_field_length}}"></label><span>{{name}}</span>
+					{{/items}}
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</script>

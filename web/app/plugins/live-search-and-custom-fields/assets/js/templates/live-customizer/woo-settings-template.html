@@ -1,0 +1,41 @@
+<script type="text/html" id="template-tax">
+
+	<div class="lscf-fronteditor-settings lscf-extrasidebar-template" data-fields-type="woo-settings">
+
+		<div class="lscf-fes-headline">WooCommerce Options</div>
+		<br/>
+		<br/>
+
+		<strong class="lscf-tax-headline">General Options:</strong>
+
+		<ul class="lscf-settings-options">
+			<li>
+				<input 
+					{{#set_settings_option_as_active}}woo_price_format{{/set_settings_option_as_active}}
+					data-key="woo_price_format"
+					class="px-checkbox"
+					id="lscf-woo-price-format"
+					type="checkbox" name="woo_price_format"
+					value="1"
+				/>
+				<label class="px-checkbox-label green" for="lscf-woo-price-format"></label>
+				<span class="lscf-settings-checkbox">WooCommerce Prices Format</span>
+			</li>
+			<li>
+				<input 
+					{{#set_settings_option_as_active}}woo_instock{{/set_settings_option_as_active}}
+					data-key="woo_instock"
+					class="px-checkbox" 
+					id="lscf-woo-instock-products" 
+					type="checkbox" name="woo_instock"
+					value="1"
+				/>
+				<label class="px-checkbox-label green" for="lscf-woo-instock-products"></label>
+				<span class="lscf-settings-checkbox">Hide <b> out of stock</b> products</span>
+			</li>
+		</ul>
+
+
+	</div>
+
+</script>

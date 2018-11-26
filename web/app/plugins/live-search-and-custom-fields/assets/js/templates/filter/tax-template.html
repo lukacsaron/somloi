@@ -1,0 +1,169 @@
+<script type="text/html" id="template-tax-posts">
+	
+	<h4>Custom Post Categories </h4>
+
+	{{#items}}
+
+	<div class="taxonomies-block px-post-tax{{index}}">
+		<span class="taxonomy-headline">
+			<label>Categories from taxonomy:</label> <strong>{{taxonomy}}</strong>
+		</span>
+		<br/>
+		<label>Input a title for Filter Field. It will be visible into filter sidebar.</label>
+		<i>ex.:Cars, Hotels, Restaurants...etc.</i><input placeholder="taxonomy title" type="text" name="{{taxonomy}}_taxtitle" value="{{title}}">
+
+		<div class="display-fields-as parent-taxonomies-view-type">
+			
+			<div class="px-inline">
+				<label>In filter sidebar:</label>
+				<select name="{{taxonomy}}_tax_display_as" class="filter-fields-display custom-select-type-1">
+					<option {{#display_as_set_active}}{{display_as}}__default{{/display_as_set_active}} value="default">Display as</option>
+					<option {{#display_as_set_active}}{{display_as}}__px_check_box{{/display_as_set_active}} value="px_check_box">Checkbox</option>
+					<option {{#display_as_set_active}}{{display_as}}__px_radio_box{{/display_as_set_active}} value="px_radio_box">Radio</option>
+					<option {{#display_as_set_active}}{{display_as}}__px_select_box{{/display_as_set_active}} value="px_select_box">Dropdown</option>
+				</select>
+			</div>
+
+
+
+			<label class="tax-categs">Categories:</label>
+
+			<br/>
+			<br/>
+
+			<div class="lscf-select-all-terms">
+				<input
+				  {{#set_checkbox_as_active}}{{display_all_terms}}{{/set_checkbox_as_active}}
+				  class="px-checkbox lscf-display-all-taxonomy-terms-checkbox" 
+				  id="display-all-terms-{{taxonomy}}" 
+				  type="checkbox"
+				  name="all_from_tax_{{taxonomy}}" value="1">
+				<label class="px-checkbox-label lscf-display-all-taxonomy-terms" for="display-all-terms-{{taxonomy}}"></label><span>Display all taxonomy's terms</span>
+			</div>
+
+			<br/>
+
+			<div class="lscf-custom-select-categories">
+
+				<div class="tax-categories-container">
+					
+					<div class="left-side">
+						
+						<input class="px-checkbox tax-list-check-all-checkbox" id="{{taxonomy}}" type="checkbox">
+						<label class="px-checkbox-label tax-list-check-all" for="{{taxonomy}}"></label><strong>Select all</strong>
+					</div>
+					
+					<div class="right-side">
+						<ul class="px-post-categories" data-active-parent-count="0">
+
+							<li class="first-child"></li>
+							{{#categs}}
+							<li class="{{className}}">
+								
+								<input 
+									{{#set_checkbox_as_active}}{{data.active}}{{/set_checkbox_as_active}} 
+									class="px-checkbox" 
+									id="{{data.taxonomy}}-{{data.slug}}" 
+									type="checkbox" 
+									name="{{data.taxonomy}}_posttax" 
+									value="{{data.term_id}}!#{{data.name}}!#"/>
+								
+								{{data.name}}
+
+								<label class="px-checkbox-label green" for="{{data.taxonomy}}-{{data.slug}}"></label>
+							</li>
+							{{/categs}}
+
+						</ul>
+					</div>
+				</div>
+
+				<h4 class="lscf-subtegories-headline"> Subcategories </h4>
+
+				<div class="lscf-subcategories-options">
+					<ul class="lscf-so-list">
+						<li>
+							<input 
+							{{#set_checkbox_as_active}}{{subcategories_hierarchy_display}}{{/set_checkbox_as_active}}
+							class="px-checkbox lscf-hierarchy-subcategories-display" id="tax-subcateg-{{taxonomy}}" type="checkbox" name="{{taxonomy}}_hierarchy_display" value="1">
+							<label class="px-checkbox-label green lscf-hierarchy-subcategories-display-label" for="tax-subcateg-{{taxonomy}}"></label>
+							Display subcategories as hierarchical
+						</li>
+						<li>
+							<input 
+								{{#set_checkbox_as_active}}{{display_parent_categs_as_filters}}{{/set_checkbox_as_active}}
+								class="px-checkbox lscf-subcategories-independent-display" 
+								id="tax-subcateg-{{taxonomy}}-indep-display" 
+								type="checkbox" 
+								name="{{taxonomy}}_independent_parent_display" 
+								value="1" />
+							<label class="px-checkbox-label green lscf-hierarchy-subcategories-display-label" for="tax-subcateg-{{taxonomy}}-indep-display"></label>
+							Display parent categories as new independent filter field
+						</li>
+				</div>
+
+				<div class="lscf-tax-all-subcategories">
+					<ul class="lscf-unsorted-subcategories">
+					{{#unsorted_subcategories}}
+						<li>
+							<input 
+								{{#set_checkbox_as_active}}{{active}}{{/set_checkbox_as_active}}
+								class="px-checkbox" id="{{taxonomy}}-subcateg-{{term_id}}" type="checkbox" name="{{taxonomy}}_posttax" value="{{term_id}}!#{{name}}!#"/>{{name}}
+							<label class="px-checkbox-label green" for="{{taxonomy}}-subcateg-{{term_id}}"></label>
+						</li>
+					{{/unsorted_subcategories}}
+					</ul>
+				</div>
+
+				<div class="tax-subcategories-display">
+
+					<div class="lscf-hierarchy-subcategories-container">
+
+						<div class="tax-subcategs-check-all-container">
+							
+							<input class="px-checkbox tax-list-check-all-checkbox" id="{{taxonomy}}_ds" type="checkbox" name="{{taxonomy}}-subcategs-check-all">
+
+							<label class="tax-list-check-all px-checkbox-label green" for="{{taxonomy}}_ds"></label>
+							
+							<span>Select all</span>
+
+						</div>
+
+						{{#categs}}
+							{{#subcategs}}
+								<div class="px-inline subcateg-view-{{parent_id}}" style="display:none">
+									<select class="custom-select-type-1" data-class="inactive" name="{{taxonomy}}_pcatid_{{parent_id}}_child_display_as">
+										<option {{#display_as_set_active}}{{display_as}}__default{{/display_as_set_active}} value="default">Display subcategories as</option>
+										<option {{#display_as_set_active}}{{display_as}}__px_check_box{{/display_as_set_active}} value="px_check_box">Checkbox</option>
+										<option {{#display_as_set_active}}{{display_as}}__px_radio_box{{/display_as_set_active}} value="px_radio_box">Radio</option>
+										<option {{#display_as_set_active}}{{display_as}}__px_select_box{{/display_as_set_active}} value="px_select_box">Dropdown</option>
+									</select>
+
+									<span>
+										
+										<input 
+											{{#set_checkbox_as_active}}{{active}}{{/set_checkbox_as_active}}  
+											class="px-checkbox" id="childs-{{parent_id}}" type="checkbox" name="{{taxonomy}}_pcatid_{{parent_id}}" value="{{parent_id}}">
+										<label class="px-checkbox-label green" for="childs-{{parent_id}}"></label>
+
+										<b>{{parent_name}}</b> <i>(has subcategories)</i>
+										<span class="subcategs-list">items: <i>{{list}}</i></span>
+									</span>
+
+								</div>
+							{{/subcategs}}
+						{{/categs}}
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+	<hr class="silver">
+	{{/items}}
+
+</script>

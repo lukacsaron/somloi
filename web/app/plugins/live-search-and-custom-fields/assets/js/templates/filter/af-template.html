@@ -1,0 +1,227 @@
+<script type="text/html" id="px-filter-additional-fields-template">
+	
+
+	{{#items}}
+
+		{{#is_range}}
+			<div class="px_additional-fields-row px_range">
+			
+				<div class="left-side">
+					<label>Type:</label><strong>Range</strong><br/>
+					<span class="px_remove px_remove-additional-field">Remove</span>
+				</div>
+
+				<div class="right-side">
+					
+					<div class="px-frow">
+						<label>Field Name:</label>
+						<input class="px_sanitize-OnBlur" type="text" name="px_range-name-{{index}}" value="{{name}}"/>
+					</div>
+
+					<div class="px-frow min-max">
+
+						<input class="px_sanitized-key" type="hidden" name="px_range-key-{{index}}" value=""/>
+						<label>Min Value:</label><input type="number" name="px_range-max-{{index}}" value="{{max}}"/>
+						<label class="float-right center">Max Value:</label><input type="number" name="px_range-min-{{index}}" value="{{min}}"/>
+
+					</div>
+
+					<div class="px-frow">
+					
+						<label class="wide">Range value's label(optional; ex:$,€,£)</label>
+						<input type="text" name="px_range-label-{{index}}" value="{{label}}"/>
+					
+					</div>
+
+					<div class="px-frow">
+			
+						<label class="wide">Display rangel label on:</label>
+						<div class="px_custom-fields-range float-right">
+							<input 
+								type="radio"
+								{{#set_as_active}}left___{{label_position}}{{/set_as_active}}
+								class="px_radiobox-input"
+								name="px_range-label_position-{{index}}" 
+								value="left"
+								id="px-label-position-left">
+							<label class="px_radiobox" for="px-label-position-left"></label><span>Left</span>
+		
+							&nbsp; &nbsp;
+		
+							<input 
+								type="radio"
+								{{#set_as_active}}right___{{label_position}}{{/set_as_active}}
+								class="px_radiobox-input"
+								name="px_range-label_position-{{index}}" 
+								value="right"
+								id="px-label-position-right">
+							<label class="px_radiobox" for="px-label-position-right"></label><span>Right</span>
+						</div>
+					
+					</div>
+
+					<div class="px-frow">
+					
+						<label class="wide">Show range for:</label>
+						
+						<div class="px_custom-fields-range float-right">
+						
+							{{#text_fields.items}}
+
+								<input 
+									class="px_radiobox-input" 
+									name="px_range-fieldID-{{index}}" 
+									type="radio" id="{{ID}}-{{index}}_radio"
+									{{#set_as_active}}{{fieldID}}___{{field_form_id}}{{/set_as_active}}
+									value="{{value}}" />
+								
+								<label class="px_radiobox" for="{{ID}}-{{index}}_radio"></label><span>{{name}}</span>
+
+							{{/text_fields.items}}
+
+							{{#is_woocommerce}}
+					
+								<div class="clear"></div>
+								
+								<div class="px-woocommerce-range-fields">
+
+									<input class="px_radiobox-input"
+										{{#set_as_active}}{{fieldID}}___px-woocommerce-price{{/set_as_active}}
+										name="px_range-fieldID-{{index}}" 
+										type="radio"
+										value="px-woocommerce-price"
+										id="px-woocommerce-price-{{index}}"
+										 />
+
+									<label class="px_radiobox theme-field" for="px-woocommerce-price-{{index}}"></label>
+									<span>Price <i>(WooCommerce)</i></span>
+
+									
+									<input class="px_radiobox-input"
+										{{#set_as_active}}{{fieldID}}___px-woocommerce-inventory{{/set_as_active}}
+										name="px_range-fieldID-{{range_field_length}}" 
+										type="radio"
+										value="px-woocommerce-inventory"
+										id="px-woocommerce-inventory-{{index}}"
+										/>
+									
+									<label class="px_radiobox theme-field" for="px-woocommerce-inventory-{{index}}"></label>
+									<span>Stock quantity <i>(WooCommerce)</i></span>
+
+								</div>
+
+							{{/is_woocommerce}}
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		{{/is_range}}
+
+
+		{{#is_search}}
+			
+			<div class="px_additional-fields-row px_search">
+		
+				<div class="left-side">
+					<label>Type:</label><strong>Search</strong><br/>
+					<span class="px_remove px_remove-additional-field">Remove</span>
+				</div>
+
+
+				{{#is_woocommerce}}
+				
+					<div class="right-side">
+						<label>Field Name:</label><input type="text" name="px_search_field_name_{{index}}" value="{{name}}">
+						<div class="clear"></div>
+						
+						<div class="px-woocommerce-search-fields">
+							<input 
+								{{#set_as_active}}{{search_by}}___default{{/set_as_active}}
+								class="px_radiobox-input" 
+								name="px_search_by_{{index}}" 
+								checked="checked" 
+								type="radio" 
+								id="px_search_by_default_{{index}}" 
+								value="default"/>
+
+							<label class="px_radiobox theme-field" for="px_search_by_default_{{index}}"></label><span>Default</span>
+							
+							<input
+								{{#set_as_active}}{{search_by}}___sku{{/set_as_active}} 
+								class="px_radiobox-input" 
+								name="px_search_by_{{index}}" 
+								type="radio" 
+								id="px_search_by_sku_{{index}}" 
+								value="sku" />
+							<label class="px_radiobox theme-field" for="px_search_by_sku_{{index}}"></label><span>Product SKU</span>
+						</div>
+
+					</div>
+
+				{{/is_woocommerce}}
+			
+				{{^is_woocommerce}}
+					<div class="right-side">
+						<label>Field Name:</label><input type="text" name="px_search_field_name" value="{{name}}">
+					</div>
+				{{/is_woocommerce}}
+
+			</div>
+
+		{{/is_search}}
+
+
+		{{#is_di}}
+
+			<div class="px_additional-fields-row px_date-interval">
+		
+				<div class="left-side">
+					<label>Type:</label><strong>Date Interval</strong><br/>
+					<span class="px_remove px_remove-additional-field">Remove</span>
+				</div>
+			
+				<div class="right-side">
+					
+					<div class="px-frow">
+						<label>Field Name</label>
+						<input class="px_sanitize-OnBlur" type="text" name="px_date-interval-name-{{di_field_length}}" value="{{name}}"/>
+					</div>				
+
+					<div class="px-frow">
+						
+						<input class="px_sanitized-key" type="hidden" name="px_date-interval-key-{{di_field_length}}" value=""/>
+						<label class="wide">Show Date Interval for:</label>
+						
+						<div class="px_custom-fields-date-interval float-right">
+
+							{{#date_fields.items}}
+
+								<input 
+									class="px_radiobox-input" 
+									name="px_date-interval-fieldID-{{di_field_length}}" 
+									type="radio" 
+									id="{{ID}}"
+									{{#set_as_active}}{{fieldID}}___{{field_form_id}}{{/set_as_active}}
+									value="{{value}}" />
+
+								<label class="px_radiobox" for="{{ID}}"></label><span>{{name}}</span>
+
+							{{/date_fields.items}}
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		{{/is_di}}
+
+	{{/items}}
+
+</script>

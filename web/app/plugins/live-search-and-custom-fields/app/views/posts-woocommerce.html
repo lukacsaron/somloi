@@ -1,0 +1,24 @@
+<div class="lscf-template3-posts-wrapper lscf-template3-cols-{{pluginSettings.filterSettings.theme.columns}}">
+	<div class="lscf-template3-posts">
+		<div class="lscf-template3-post" ng-repeat="post in filterPostsTemplate.posts" ng-class="filterPostsTemplate.filter_type == 'woocommerce' ? 'lscf-template3-woocommerce-display ' + post.class_name : post.class_name ">
+			<div class="lscf-template3-image">
+				<span class="lscf-template3-featured-image" style="background-image: url('{{post.featuredImage}}');"></span>
+				<div class="lscf-template3-onsale" ng-if="post.woocommerce.sale_price!=''" >Sale!</div>
+				<a class="lscf-template3-featured-image-link" href="{{post.permalink}}"></a>
+
+				<div class="lscf-woocommerce-grid-cf" ng-bind-html="post.lscf_shortcodes"></div>
+        <!-- aron edit add to cart line changed -->
+        <input id="quantity-{{post.ID}}" data-product_id="{{post.ID}}" class="quantity_selector" type="number" id="prod_quantity" name="quantity" value="1" step="1">
+				<a id="addtocart-{{post.ID}}" data-product_id="{{post.ID}}" data-quantity="1" class="lscf-template3-add-to-cart" href="{{post.woocommerce.add_to_cart_link_quantity}}">{{pluginSettings.generalSettings.writing.add_to_cart}}</a>
+			</div>
+			<a class="lscf-template3-link" href="{{post.permalink}}">
+				<div class="lscf-template3-li-title" ng-bind-html="post.title.long"></div>
+				<div class="lscf-li-featured-label">{{post.featured_label.value}}</div>
+				<div class="lscf-li-price" ng-if="post.woocommerce.sale_price!=''">
+					<del>{{post.woocommerce.full_regular_price}}</del> <ins>{{post.woocommerce.full_sale_price}}</ins>
+				</div>
+				<div class="lscf-li-price" ng-if="post.woocommerce.sale_price=='' && post.woocommerce.regular_price!= '' && ! post.featured_label ">{{post.woocommerce.full_regular_price}}</div>
+			</a>
+		</div>
+	</div>
+</div>

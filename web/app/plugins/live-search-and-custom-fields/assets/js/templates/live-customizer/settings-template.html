@@ -1,0 +1,329 @@
+<script type="text/html" id="template-tax">
+
+	<div class="lscf-fronteditor-settings lscf-extrasidebar-template" data-fields-type="settings-page">
+
+		<div class="lscf-fes-headline">Options</div>
+
+		<br/>
+		<br/>
+
+		<strong class="lscf-tax-headline">General Options:</strong>
+
+		<ul class="lscf-settings-options">
+			
+			<li>
+				<input 
+					{{#set_settings_option_as_active}}infinite_scrolling{{/set_settings_option_as_active}}
+					data-key="infinite_scrolling"
+					class="px-checkbox" 
+					id="lscf-infinite-scrolling" 
+					type="checkbox" name="infinite_scrolling"   
+					value="1"
+				/>
+				<label class="px-checkbox-label green" for="lscf-infinite-scrolling"></label>
+				<span class="lscf-settings-checkbox">Infinite Scrolling</span>
+			</li>
+
+			<li>
+				<input 
+					{{#set_settings_option_as_active}}url_history{{/set_settings_option_as_active}}
+					data-key="url_history"
+					class="px-checkbox" 
+					id="lscf-url-history" 
+					type="checkbox" name="url_history"
+					value="1"
+				/>
+				<label class="px-checkbox-label green" for="lscf-url-history"></label>
+				<span class="lscf-settings-checkbox">Push Filters into URL</span>
+			</li>
+
+			<li>
+				<input 
+					{{#set_settings_option_as_active}}instant_search{{/set_settings_option_as_active}}
+					data-key="instant_search"
+					class="px-checkbox" 
+					id="lscf-instant-search" 
+					type="checkbox" name="instant-search"
+					value="1"
+				/>
+				<label class="px-checkbox-label green" for="lscf-instant-search"></label>
+				<span class="lscf-settings-checkbox">Activate instant search <i style="font-size:12px;">(works with < 300 posts)</i></span>
+			</li>
+
+			<li>
+				<input 
+					{{#set_settings_option_as_active}}disable_empty_option_on_filtering{{/set_settings_option_as_active}}
+					data-key="disable_empty_option_on_filtering"
+					class="px-checkbox" 
+					id="lscf-disable_empty_option_on_filtering" 
+					type="checkbox" name="disable_empty_option_on_filtering"
+					value="1"
+				/>
+				<label class="px-checkbox-label green" for="lscf-disable_empty_option_on_filtering"></label>
+				<span class="lscf-settings-checkbox">Disable empty options/categories when filtering</span>
+			</li>
+
+			<li>
+				<input 
+					{{#set_settings_option_as_active}}hide_see_more_on_checkboxes_list{{/set_settings_option_as_active}}
+					data-key="hide_see_more_on_checkboxes_list"
+					class="px-checkbox" 
+					id="lscf-hide-see-more-on-checkboxes" 
+					type="checkbox" name="lscf_hide_see_more_on_checkboxes"
+					value="1"
+				/>
+				<label class="px-checkbox-label green" for="lscf-hide-see-more-on-checkboxes"></label>
+				<span class="lscf-settings-checkbox">Remove "<b>See More</b>" option from checkboxes and radio buttons lists</span>
+			</li>
+
+			<li>
+				<span class="lscf-settings-checkbox"></span>
+				<br/><br/>
+			</li>
+
+			<li>
+				<strong class="lscf-tax-headline">Checkboxes conditional logic type:</strong><br/>
+
+				<span class="lscf-lc-settings-radio">
+					<input 
+						{{#set_as_active_if_match}}{{settings.checkboxes_conditional_logic.value}}__pxlt__or{{/set_as_active_if_match}}
+						id="lscf-checkboxes-conditional-logic-or"
+						data-key="checkboxes_conditional_logic" 
+						type="radio" name="checkboxes_conditional_logic"
+						value="or"
+					/> <label for="lscf-checkboxes-conditional-logic-or">OR</label>
+				</span>
+			
+				<span class="lscf-lc-settings-radio">
+
+					<input 
+						{{#set_as_active_if_match}}{{settings.checkboxes_conditional_logic.value}}__pxlt__and{{/set_as_active_if_match}}
+						id="lscf-checkboxes-conditional-logic-and"
+						data-key="checkboxes_conditional_logic" 
+						type="radio" name="checkboxes_conditional_logic"
+						value="and"
+					/><label for="lscf-checkboxes-conditional-logic-and">AND</label>
+
+				</span>
+			</li>
+			<li>
+				<strong class="lscf-tax-headline">Order LSCF custom fields as:</strong>
+				<i>(Applies to "<b>Order as</b>" and "<b>Sort by</b>" sections)</i>
+
+				<span class="lscf-lc-settings-radio">
+
+					<input 
+						{{#set_as_active_if_match}}{{settings.lscf_custom_fields_order_as.value}}__pxlt__number{{/set_as_active_if_match}}
+						id="lscf-custom-fields-order-as-numeric"
+						data-key="lscf_custom_fields_order_as"
+						type="radio" 
+						name="lscf-custom-fields-order-as" 
+						value="number" />
+					<label for="lscf-custom-fields-order-as-numeric">Number</label>
+
+				</span>
+				<span class="lscf-lc-settings-radio">
+
+					<input 
+						{{#set_as_active_if_match}}{{settings.lscf_custom_fields_order_as.value}}__pxlt__string{{/set_as_active_if_match}}
+						id="lscf-custom-fields-order-as-string"
+						data-key="lscf_custom_fields_order_as"
+						type="radio" 
+						name="lscf-custom-fields-order-as" 
+						value="string"/>
+					<label for="lscf-custom-fields-order-as-string">String(A-Z)</label>
+				</span>
+			</li>
+			<li>
+				<strong class="lscf-tax-headline">Range filtering type:</strong>
+
+				<span class="lscf-lc-settings-radio">
+					<input
+						{{#set_as_active_if_match}}{{settings.range_filtering_type.value}}__pxlt__default{{/set_as_active_if_match}}
+						id="lscf-range-filtering-type-default"
+						data-key="range_filtering_type"
+						type="radio" 
+						name="range-filtering-type" 
+						value="default" />
+					<label for="lscf-range-filtering-type-default">Number only</label>
+				</span>
+
+				<span class="lscf-lc-settings-radio">
+					<input
+						{{#set_as_active_if_match}}{{settings.range_filtering_type.value}}__pxlt__lscf_number{{/set_as_active_if_match}}
+						id="lscf-range-filtering-type-number"
+						data-key="range_filtering_type"
+						type="radio" 
+						name="range-filtering-type"
+						value="lscf_number"/>
+					<label for="lscf-range-filtering-type-number">Strings with Numbers</label>
+				</span>
+			</li>
+		</ul>
+		<hr/>
+		<br/>
+		<strong class="lscf-tax-headline">Order posts by default:</strong>
+
+		<ul class="lscf-settings-options">
+			
+			<li>
+				<strong class="lscf-settings-subheadline">Order as:</strong><br/>
+
+				<span class="lscf-lc-settings-radio">
+
+					<input 
+						{{#set_as_active_if_match}}{{settings.default_order_by.order_as}}__pxlt__asc{{/set_as_active_if_match}}
+						id="lscf-default-ordering-as-asc"
+						data-key="default_order_by"
+						data-value="order_as" 
+						type="radio" name="lscf-default-ordering-as"   
+						value="asc"/>
+					<label for="lscf-default-ordering-as-asc">ASC</label>
+
+				</span>
+
+				<span class="lscf-lc-settings-radio">
+
+					<input 
+						{{#set_as_active_if_match}}{{settings.default_order_by.order_as}}__pxlt__desc{{/set_as_active_if_match}}
+						id="lscf-default-ordering-as-desc"
+						data-key="default_order_by"
+						data-value="order_as" 
+						type="radio" name="lscf-default-ordering-as"   
+						value="desc"
+					/><label for="lscf-default-ordering-as-desc">DESC</label>
+
+				</span>
+			</li>
+		</ul>
+
+		<ul class="lscf-fe-full-list">
+			{{#settings.orderable_list}}
+			<li>
+				<span class="lscf-lc-settings-radio">
+					<input 
+						{{#set_as_active_if_match}}{{id}}__pxlt__{{settings.default_order_by.value}}{{/set_as_active_if_match}}
+						data-key="default_order_by"
+						data-name="{{name}}"
+						class="px-checkbox" 
+						id="lscf-default-order-by-{{id}}"
+						type="radio" name="default_order_by"   
+						value="{{id}}"
+					/>
+					<label for="lscf-default-order-by-{{id}}">{{name}}</label>
+				</span>
+			</li>
+
+			{{/settings.orderable_list}}
+		</ul>
+
+		<hr/>
+		<br/>
+		<strong class="lscf-tax-headline">Sort by:</strong>
+
+		<ul class="lscf-fe-full-list">
+			{{#settings.orderable_list}}
+			<li>
+				<input 
+					{{#set_order_fields_as_active}}{{id}}{{/set_order_fields_as_active}}
+					data-key="order_by"
+					data-name="{{name}}"
+					class="px-checkbox has-multple-values"
+					id="lscf-order-by-{{id}}"
+					type="checkbox" name="order_by"
+					value="{{id}}"
+				/>
+				<label class="px-checkbox-label green" for="lscf-order-by-{{id}}"></label>
+				<span class="lscf-settings-checkbox">{{name}}</span>
+			</li>
+
+			{{/settings.orderable_list}}
+		</ul>
+
+		<hr/>
+		<br/>
+
+		<strong class="lscf-tax-headline">Ajax Search Settings</strong>
+		<ul class="lscf-settings-options">
+			<li>
+				<strong class="lscf-settings-subheadline">Conditional logic:</strong><br/>
+
+				<span class="lscf-lc-settings-radio">
+					<input 
+						{{#set_as_active_if_match}}{{settings.general_search_conditional_logic.value}}__pxlt__or{{/set_as_active_if_match}}
+						id="lscf-search-conditional-logic-or"
+						data-key="general_search_conditional_logic"
+						type="radio" name="lscf-search-conditional-logic"
+						value="or"
+					/>
+					<label for="lscf-search-conditional-logic-or">OR</label>
+				</span>
+
+				<span class="lscf-lc-settings-radio">
+					<input 
+						{{#set_as_active_if_match}}{{settings.general_search_conditional_logic.value}}__pxlt__and{{/set_as_active_if_match}}
+						id="lscf-search-conditional-logic-and"
+						data-key="general_search_conditional_logic"
+						type="radio" name="lscf-search-conditional-logic"
+						value="and"/>
+					<label for="lscf-search-conditional-logic-and">AND</label>
+				</span>
+			</li>
+			<li>
+				<strong>Search Algorithm:</strong><br/>
+				<i style="font-size:12px; display:block; line-height:16px;">Switch between algorithms to get a better performance.</i>
+				<span class="lscf-lc-settings-radio">
+					<input 
+						{{#set_as_active_if_match}}{{settings.general_search_algorithm.value}}__pxlt__algorithm-1{{/set_as_active_if_match}}
+						id="general-search-algorithm-1"
+						data-key="general_search_algorithm"
+						type="radio" name="lscf-general-search-algorithm"
+						value="algorithm-1"/>
+					<label for="general-search-algorithm-1">Algorithm 1</label>
+				</span>
+
+				<span class="lscf-lc-settings-radio">
+
+					<input
+						{{#set_as_active_if_match}}{{settings.general_search_algorithm.value}}__pxlt__algorithm-2{{/set_as_active_if_match}}
+						id="general-search-algorithm-2"
+						data-key="general_search_algorithm"
+						type="radio" 
+						name="lscf-general-search-algorithm"
+						value="algorithm-2"/>
+
+					<label for="general-search-algorithm-2">Algorithm 2</label>
+				</span>
+			</li>
+		</ul>
+
+		<ul class="lscf-settings-options">
+			<li>
+				<strong class="lscf-settings-subheadline">Search Into:</strong>
+			</li>
+		</ul>
+
+		<ul class="lscf-fe-full-list">
+			{{#settings.general_search_data}}
+			<li>
+				<input 
+					{{#set_general_search_active_items}}{{id}}{{/set_general_search_active_items}}
+					data-key="general_search_by"
+					data-name="{{name}}"
+					class="px-checkbox has-multple-values" 
+					id="lscf-search-by-{{id}}"
+					type="checkbox" 
+					name="general_search_by[]"
+					value="{{id}}"
+				/>
+				<label class="px-checkbox-label green" for="lscf-search-by-{{id}}"></label>
+				<span class="lscf-settings-checkbox">{{name}}</span>
+			</li>
+
+			{{/settings.general_search_data}}
+		</ul>
+
+
+	</div>
+
+</script>

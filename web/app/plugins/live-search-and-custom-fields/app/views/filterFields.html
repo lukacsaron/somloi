@@ -1,0 +1,810 @@
+<div class="px-fiels-wrapper" ng-class="{'lscf-filters-only-wrapper' : actionSettings.filtersOnly }" >
+
+	<div class="px-posts-overlay-loading" ng-if="loadMoreBtn.sidebarLoading" >
+		<img ng-src="{{pluginSettings.pluginPath + 'assets/images/loading_light.gif'}}">
+	</div>
+
+	<label class="px-filter-label-mobile"><span>{{pluginSettings.generalSettings.writing.filter}}</span></label>
+
+	<div class="px-field-wrapper-container">
+
+		<span class="lscf-administrator-label" ng-if="actionSettings.initFieldsDraggable == 1">Drag to order fields</span>
+
+		<div class="lascf-reset-filter" 
+			 ng-if="pluginSettings.filterSettings.reset_button.position == 'top' && 1 == pluginSettings.filterSettings.reset_button.status && ! actionSettings.filtersOnly ">
+			<label id="lscf-reset-filters" ng-click="reset_filter()">{{pluginSettings.filterSettings.reset_button.name}}</label>
+		</div>
+
+		<div
+			ng-repeat="field in filterFieldsTemplate.fields" 
+			class="lscf-filter-field {{returnFieldClassnames( field )}}"
+			data-index="{{$index}}">
+
+			<div ng-switch on="field.group_type">
+
+				<div ng-switch-when="additional_fields" class="lscf-group-type" data-group-type="additional_fields">
+
+					<div ng-switch on="field.type">
+
+						<div ng-switch-when="search"  class="pxSearchField">
+							<h4 class="lscf-sidebar-heading">{{field.name}}</h4>
+							<input 
+								live-search
+								ng-if="allPostsCount <= 300 && 1 === pluginSettings.generalSettings.instant_search && true !== actionSettings.filtersOnly"
+								type="text" 
+								ng-blur="buildLocationOnBlur()"
+								ng-class="{ 'px-focus' : pxsearch != '' && pxsearch != undefined }"
+								ng-model="pxsearch" 
+								class="lscf-live-search-input" 
+								placeholder="{{field.name}}"/>
+
+							<input 
+								ajax-search 
+								ng-if="allPostsCount > 300 || 0 === pluginSettings.generalSettings.instant_search || true === actionSettings.filtersOnly "
+								type="text"
+								ng-blur="buildLocationOnBlur()"
+								data-search-type="general-search"
+								ng-class="{ 'px-focus' : pxsearch != '' && pxsearch != undefined }" 
+								ng-model="pxsearch"
+								placeholder="{{field.name}}" />
+
+							<hr class="silver"/> 
+						</div>
+
+						<div ng-switch-when="woo-search-default"  class="pxSearchField">
+
+							<h4 class="lscf-sidebar-heading">{{field.name}}</h4>
+
+							<input 
+								live-search
+								ng-if="allPostsCount <= 300 && 1 === pluginSettings.generalSettings.instant_search && true !== actionSettings.filtersOnly " 
+								type="text"
+								ng-blur="buildLocationOnBlur()" 
+								ng-class="{ 'px-focus' : pxsearch != '' && pxsearch != undefined }" 
+								ng-model="pxsearch" 
+								class="lscf-live-search-input"
+								placeholder="{{field.name}}"/>
+
+							<input 
+								ajax-search
+								ng-if="allPostsCount > 300 || 0 === pluginSettings.generalSettings.instant_search || true === actionSettings.filtersOnly"
+								ng-blur="buildLocationOnBlur()"
+								data-search-type="general-search" 
+								type="text" 
+								ng-class="{ 'px-focus' : pxsearch != '' && pxsearch != undefined }" ng-model="pxsearch"
+								placeholder="{{field.name}}" />
+
+							<hr class="silver"/> 
+
+						</div>
+
+						<div ng-switch-when="woo-search-sku"  class="pxSearchField">
+
+							<h4 class="lscf-sidebar-heading">{{field.name}}</h4>
+							<!-- <input 
+								type="text"
+								live-search
+								ng-if="allPostsCount <= 300 && 1 === pluginSettings.generalSettings.instant_search && true !== actionSettings.filtersOnly " 
+								ng-class="{ 'px-focus' : pxsearch != '' && pxsearch != undefined }" 
+								ng-model="pxsearch_woo_sku" 
+								class="lscf-live-search-input"
+								placeholder="{{field.name}}" /> -->
+
+							<input 
+								ajax-search
+								type="text" 
+								ng-blur="buildLocationOnBlur()"
+								data-search-type="woo-product-sku" 
+								ng-class="{ 'px-focus' : pxsearch != '' && pxsearch != undefined }" 
+								ng-model="pxsearch_woo_sku"
+								placeholder="{{field.name}}" />
+
+							<hr class="silver"/> 
+
+						</div>
+
+						<div ng-switch-when="range" class="pxRangeField {{field.fieldID}}"  data-id="{{field.fieldID}}">
+
+							<h4 class="lscf-sidebar-heading">{{field.name}}</h4>
+
+							<div 
+								class="price-range customRange" 
+								data-maxval="{{field.max}}" 
+								data-minval="{{field.min}}" 
+								data-labelpos="{{field.label_position}}"
+								data-defaultpos-left="{{calculateRangePosition( field.fieldID, field.min, field.max, 'min' )}}" 
+								data-defaultpos="{{calculateRangePosition( field.fieldID, field.min, field.max, 'max' )}}">
+
+								<span class="startPoint startDraggablePoint ">
+									<label class="defaultVal">{{ initRangeValue( field, 'min' )}}</label>
+								</span>
+
+								<div class="range_draggable" data-width="-1"></div>
+
+								<span class="draggablePoint">
+									<label ng-class="{ 'long-num':field.max.length > 5 }"  data="{{field.label.length}}" data-labelval="{{field.label}}"	 class="rangeVal">{{ initRangeValue( field, 'max' )}}</label>
+								</span>
+
+								<input type="hidden" name="rangeVal[]"  value="">
+							</div>
+
+							<hr class="silver"/> 
+
+						</div>
+
+
+						<div ng-switch-when="date-interval" class="pxDateIntervalField {{field.filterFieldID}}" data-id="{{field.fieldID}}">
+
+							<h4 class="lscf-sidebar-heading">{{field.name}}</h4>
+							<label class="dateFrom px-date-label">
+								<input class="initCalendar" data-alternative="lscf-date-picker-alternative-from" data-type="from" type="text" name="{{field.filterFieldID}}_from" value="" placeholder="From"/>
+								<input type="hidden" class="lscf-date-picker-alternative-from" value="" />
+							</label>
+
+							<label class="dateTo px-date-label">
+								<input class="initCalendar" data-alternative="lscf-date-picker-alternative-to" data-type="to" type="text" name="{{field.filterFieldID}}_to" value="" placeholder="To"/>
+								<input type="hidden" class="lscf-date-picker-alternative-to" value="" />
+							</label>
+
+							<hr class="silver"/>
+						</div>
+					</div>
+				</div>
+
+
+				<div 
+				  ng-switch-when="taxonomies" 
+				  class="lscf-taxonomies-fields lscf-group-type {{field.ID}}"
+				  data-type="checkbox_post_terms" 
+				  data-group-type="taxonomies" >
+
+					<div ng-switch on="field.tax.display_as">
+
+						<div
+						  ng-switch-when="px_select_box"
+						  class="px_capf-field px_tax-field pxSelectField px-select-box {{field.ID}}" 
+						  data-filter-as="checkbox_post_terms" 
+						  data-id="{{field.ID}}" >
+
+							<h4 class="lscf-sidebar-heading" ng-bind="field.tax.name"></h4>
+
+							<select class="custom-select">
+
+								<option value="0">{{pluginSettings.generalSettings.writing.select}}</option>
+								<option 
+									ng-selected="filterFieldIsSelected( field.ID, term.data.value, false )"
+									ng-repeat="term in field.tax.terms" 
+									data-index="{{$index}}"
+									ng-data-disabled="{{ ( term.data.not_active && actionSettings.disableInactiveTerms ) ? 1 : 0 }}" 
+									value="{{term.data.value}}" 
+									ng-bind-html="term.data.name">
+								</option>
+
+							</select>
+
+						</div>
+
+						<div 
+						  ng-switch-when="px_radio_box" 
+						  class="px_capf-field px_tax-field pxRadioField {{field.ID}}" 
+						  data-filter-as="checkbox_post_terms" 
+						  data-id="{{field.ID}}">
+
+							<h4 class="lscf-sidebar-heading" ng-bind="field.tax.name"></h4>
+
+							<div class="px_checkboxesList">
+
+								<div class="px_checkbox-li">
+									<input class="pxRadioInput" ng-checked="field.checked" id="{{'px-radiobox-' + field.ID}}" type="radio" name="{{field.ID}}" value="0"/>
+									<label class="pxRadioLabel" for="{{'px-radiobox-' + field.ID}}"><span>{{pluginSettings.generalSettings.writing.any}}</span></label>
+								</div>
+
+								<div 
+								  ng-class="checkboxListClassname( $index )" 
+								  class="px_checkbox-li lscf-field-option  {{alternativeFilteringTaxInnactiveClass(term.data.not_active, 'lscf-option-disabled')}} " 
+								  data-index="{{$index}}"
+								  ng-repeat="term in field.tax.terms">
+
+									<input 
+										class="pxRadioInput" 
+										ng-if="field.tax.activeTermsLength < 2 || '' == field.tax.activeTermsLength || ! field.tax.activeTermsLength" ng-checked="filterFieldIsSelected( field.ID, term.data.value, term.checked )" 
+										id="{{term.data.value}}" 
+										type="radio" 
+										name="{{field.ID}}" 
+										value="{{term.data.value}}"/>
+
+									<input 
+										class="pxRadioInput" 
+										ng-if="field.tax.activeTermsLength > 1"
+										ng-checked="filterFieldIsSelected( field.ID, term.data.value, term.checked )"
+										id="{{term.data.value}}" 
+										type="radio" 
+										name="{{field.ID}}" 
+										value="{{term.data.value}}"/>
+
+									<label class="pxRadioLabel" for="{{term.data.value}}"><span ng-bind-html="term.data.name"></span></label>   
+
+								</div>
+
+								<strong class="lscf-see-more" ng-if="field.tax.terms.length > 5 && 1 !== pluginSettings.generalSettings.hide_see_more_on_checkboxes_list"> {{pluginSettings.generalSettings.writing.see_more}} </strong>
+							</div> 
+
+						</div>
+
+
+						<div 
+						  ng-switch-when="px_check_box" 
+						  class="px_capf-field px_tax-field pxCheckField {{field.ID}}" 
+						  data-type="checkbox_post_terms" 
+						  data-filter-as="checkbox_post_terms" 
+						  data-id="{{field.ID}}">
+
+							<h4 class="lscf-sidebar-heading" ng-bind="field.tax.name"></h4>
+							<div class="px_checkboxesList">
+
+								<div 
+									ng-class="checkboxListClassname( $index )" 
+									data-index="{{$index}}" 
+									class="px_checkbox-li lscf-field-option {{alternativeFilteringTaxInnactiveClass(term.data.not_active, 'lscf-option-disabled')}}"
+									ng-repeat="term in field.tax.terms">
+									
+									<input 
+										class="px_checkboxInput" 
+										id="{{field.ID+'-'+$index}}" 
+										type="checkbox"
+										name="{{field.ID}}" 
+										value="{{term.data.value}}">
+
+									<label 
+										class="px_checkbox {{filterFieldClassIsActive( field.ID, term.data.value )}}" 
+										ng-class="{'active' : term.checked }" 
+										for="{{field.ID+'-'+$index}}">
+									</label>
+
+									<span ng-bind-html="term.data.name"></span>
+
+								</div>
+
+								<strong class="lscf-see-more" ng-if="field.tax.terms.length > 6 && 1 !== pluginSettings.generalSettings.hide_see_more_on_checkboxes_list"> {{pluginSettings.generalSettings.writing.see_more}} </strong>
+
+							</div>
+
+						</div>
+
+						<div 
+						  ng-switch-when="default" 
+						  class="px_capf-field px_tax-field pxSelectField px-select-box {{field.ID}}" 
+						  data-filter-as="checkbox_post_terms" 
+						  data-id="{{field.ID}}" >
+
+							<h4 class="lscf-sidebar-heading" ng-bind="field.tax.name"></h4>
+
+							<select class="custom-select">
+								<option value="0">{{pluginSettings.generalSettings.writing.select}}</option>
+								<option 
+									ng-selected="filterFieldIsSelected( field.ID, term.data.value, false )"
+									ng-repeat="term in field.tax.terms" 
+									data-index="{{$index}}" 
+									ng-data-disabled="{{ ( term.data.not_active && actionSettings.disableInactiveTerms ) ? 1 : 0 }}" 
+									value="{{term.data.value}}" 
+									ng-bind-html="term.data.name">
+								</option>
+							</select>
+
+						</div>
+
+					</div>
+
+					<div 
+						class="subcategs-tax lscf-subcategory-child-of-{{subcateg.main_parent_id}}" 
+						data-classname="lscf-subcategory-child-of-{{subcateg.main_parent_id}}"
+						data-parent="{{subcateg.parent_id}}" 
+						data-index="{{$index}}" 
+						ng-repeat="subcateg in field.tax.subcategs">
+
+						<h6 ng-bind="field.tax.categs[subcateg.parent_id].name"></h6>
+
+						<div class="tax-subfield" ng-switch on="subcateg.display_as">
+
+							<div
+							  ng-switch-when="px_select_box" 
+							  class="px_capf-field px_capf-subfield pxSelectField px-select-box {{field.ID + '_-_' +subcateg.parent_id}} " 
+							  data-filter-as="checkbox_post_terms" 
+							  data-id="{{field.ID + '_-_' +subcateg.parent_id}}" >
+
+								<select class="custom-select">
+
+									<option value="0">{{pluginSettings.generalSettings.writing.select}}</option>
+									<option
+										ng-selected="filterFieldIsSelected( field.ID + '_-_' + subcateg.parent_id, term.term_id, false )"
+										ng-repeat="term in subcateg.data" 
+										data-class="lscf-hierarchy-subfield" 
+										data-index="{{$index}}" 
+										class="lscf-hierarchy-subfield" 
+										value="{{term.term_id}}" 
+										ng-bind-html="term.name">
+									</option>
+
+								</select>
+
+							</div>
+
+							<div 
+							  ng-switch-when="px_radio_box" 
+							  class="px_capf-field px_capf-subfield pxRadioField {{field.ID}}" 
+							  data-filter-as="checkbox_post_terms" 
+							  data-id="{{field.ID + '_-_' +subcateg.parent_id}}">
+
+								<div class="px_checkboxesList">
+
+									<div class="px_checkbox-li">
+
+										<input 
+										  class="pxRadioInput" 
+										  id="{{'px-radiobox-' + field.ID+subcateg.parent_id}}" 
+										  type="radio" 
+										  name="{{field.ID+subcateg.parent_id}}" 
+										  value="0"/>
+
+										<label 
+										  class="pxRadioLabel" 
+										  for="{{'px-radiobox-' + field.ID+subcateg.parent_id}}">
+											<span>{{pluginSettings.generalSettings.writing.any}}</span>
+										</label>
+
+									</div>
+
+									<div 
+										ng-class="checkboxListClassname( $index )" 
+										class="px_checkbox-li lscf-field-option lscf-hierarchy-subfield" 
+										ng-repeat="term in subcateg.data" 
+										data-index="{{$index}}" >
+											<input 
+												ng-checked="filterFieldIsSelected( field.ID + '_-_' + subcateg.parent_id, term.term_id, false )"
+												class="pxRadioInput" 
+												id="{{field.ID+term.term_id}}" 
+												type="radio"
+												name="{{field.ID+term.parent}}" 
+												value="{{term.term_id}}"/>
+
+										<label class="pxRadioLabel" for="{{field.ID+term.term_id}}"><span ng-bind-html="term.name"></span></label>
+									</div>
+								</div> 
+							</div>
+
+							<div 
+								ng-switch-when="px_check_box"
+								class="px_capf-field px_capf-subfield pxCheckField {{field.ID}}"
+								data-type="checkbox_post_terms"
+								data-filter-as="checkbox_post_terms"
+								data-index="{{$index}}"
+								data-id="{{field.ID + '_-_' +subcateg.parent_id}}">
+
+								<div class="px_checkboxesList">
+									<div 
+										class="px_checkbox-li lscf-field-option lscf-hierarchy-subfield" 
+										ng-repeat="term in subcateg.data" 
+										data-index="{{$index}}">
+
+											<input
+												ng-checked="filterFieldIsSelected( field.ID + '_-_' + subcateg.parent_id, term.term_id, false )"
+												class="px_checkboxInput" 
+												id="{{field.ID+term.term_id}}" 
+												type="checkbox" 
+												name="{{field.ID}}" 
+												value="{{term.term_id}}">
+
+											<label 
+												class="px_checkbox {{filterFieldClassIsActive( field.ID + '_-_' + subcateg.parent_id, term.term_id )}}" 
+												for="{{field.ID+term.term_id}}">
+											</label>
+
+											<span ng-bind-html="term.name"></span>
+									</div>
+								</div>
+
+							</div>
+
+							<div ng-switch-when="default" class="px_capf-field px_capf-subfield pxSelectField px-select-box" data-filter-as="checkbox_post_terms" data-id="{{field.ID + '_-_' +subcateg.parent_id}}" >
+								<select class="custom-select">
+
+									<option value="0">{{pluginSettings.generalSettings.writing.select}}</option>
+
+									<option 
+										ng-repeat="term in subcateg.data" 
+										data-index="{{$index}}"
+										ng-checked="filterFieldIsSelected( field.ID + '_-_' + subcateg.parent_id, term.term_id, false )"
+										data-class="lscf-hierarchy-subfield" 
+										value="{{term.term_id}}" 
+										ng-bind-html="term.name">
+									</option>
+
+								</select>
+							</div>
+
+						</div>
+
+					</div><!-- subcategs-tax -->
+
+				</div>
+				<hr ng-if="field.tax.terms" class="silver"/> 
+
+
+				<!-- Custom Fields -->
+				<div ng-switch-when="custom_field" class="lscf-group-type" data-group-type="custom_field">
+
+					<div ng-switch on="field.display_as">
+
+						<div ng-switch-when="px_date" class="px_capf-field pxDateField" id="{{field.ID}}" data-filter-as="{{field.type}}" data-id="{{field.ID}}">
+
+							<div class="lscf-sidebar-heading">{{field.name}}</div>
+
+							<label class="px-date-label">
+								<input class="initCalendar" type="text" data-alternative="lscf-alternative-date-{{field.ID}}" name="date" value="" placeholder="{{field.name}}"/>
+								<input type="hidden" class="lscf-alternative-date-{{field.ID}}">
+							</label> 
+						</div>
+
+						<div ng-if="!field.parent && !field.items" ng-switch-when="px_select_box" class="px_capf-field pxSelectField px-select-box {{field.ID}}" data-filter-as="{{field.type}}" data-id="{{field.ID}}">
+
+							<h4 class="lscf-sidebar-heading">{{field.name}}</h4>
+
+							<select class="custom-select">
+
+								<option value="0">{{pluginSettings.generalSettings.writing.select}}</option>
+
+								<option
+									ng-if="option.value"
+									ng-selected="filterFieldIsSelected( field.ID, option.value, false )"
+									ng-repeat="option in field.options"
+									ng-data-disabled="{{ ( option.not_active && actionSettings.disableInactiveTerms ) ? 1 : 0 }}"  
+									data-index="{{$index}}"  
+									value="{{option.value}}">
+									{{option.opt}}
+
+								</option>
+
+								<option 
+									ng-if="!option.value"
+									ng-selected="filterFieldIsSelected( field.ID, option.opt, false )"
+									ng-repeat="option in field.options" 
+									data-index="{{$index}}" 
+									ng-data-disabled="{{ ( option.not_active && actionSettings.disableInactiveTerms ) ? 1 : 0 }}"  
+									value="{{option.opt}}" 
+									ng-bind-html="option.opt">
+
+								</option>
+
+							</select>
+
+						</div>
+
+						<div 
+							ng-switch-when="px_radio_box"
+							ng-if="!field.parent && !field.items" 
+							class="px_capf-field pxRadioField {{field.ID}}" 
+							data-filter-as="{{field.type}}" data-id="{{field.ID}}">
+
+							<h4 class="lscf-sidebar-heading">{{field.name}}</h4>
+
+							<div class="px_checkboxesList">
+
+								<div class="px_checkbox-li">
+									<input class="pxRadioInput" id="{{'px-radiobox-' + field.ID}}" type="radio" name="{{field.ID}}" value="0"/>
+									<label class="pxRadioLabel" for="{{'px-radiobox-' + field.ID}}"><span>{{pluginSettings.generalSettings.writing.any}}</span></label>
+								</div>
+
+								<div
+								  ng-class="checkboxListClassname( $index )" 
+								  class="px_checkbox-li lscf-field-option {{alternativeFilteringTaxInnactiveClass(option.not_active, 'lscf-option-disabled')}}" 
+								  ng-repeat="option in field.options" 
+								  data-index="{{$index}}" >
+
+									<input 
+										ng-checked="filterFieldIsSelected( field.ID, option.value, false )"
+										class="pxRadioInput" 
+										id="{{field.ID+$index}}" 
+										type="radio" 
+										ng-if="option.value" 
+										name="{{field.ID}}" 
+										value="{{option.value}}"/>
+
+									<input
+										ng-checked="filterFieldIsSelected( field.ID, option.opt, false )" 
+										class="pxRadioInput" 
+										id="{{field.ID+$index}}" 
+										type="radio" 
+										ng-if="!option.value" 
+										name="{{field.ID}}" 
+										value="{{option.opt}}"/>
+
+									<label 
+										class="pxRadioLabel " 
+										for="{{field.ID+$index}}">
+											<span ng-bind-html="option.opt"></span>
+									</label>
+								</div>
+
+								<strong class="lscf-see-more" ng-if="field.options.length > 5 && 1 !== pluginSettings.generalSettings.hide_see_more_on_checkboxes_list"> {{pluginSettings.generalSettings.writing.see_more}} </strong>
+
+							</div>
+						</div>
+
+						<div 
+						ng-switch-when="px_check_box" 
+						class="px_capf-field pxCheckField {{field.ID}}"
+						data-filter-as="{{field.type}}"
+						data-type="checkbox"
+						data-id="{{field.ID}}">
+
+							<h4 class="lscf-sidebar-heading">{{field.name}}</h4>
+
+							<div class="px_checkboxesList">
+
+								<div 
+									ng-class="checkboxListClassname( $index )" 
+									class="px_checkbox-li lscf-field-option {{alternativeFilteringTaxInnactiveClass(option.not_active, 'lscf-option-disabled')}}" 
+									ng-repeat="option in field.options" 
+									data-index="{{$index}}">
+
+									<input 
+										ng-checked="filterFieldIsSelected( field.ID, option.value, false )"
+										class="px_checkboxInput" 
+										id="{{field.ID+$index}}" 
+										type="checkbox" 
+										ng-if="option.value" 
+										name="{{field.ID}}" 
+										value="{{option.value}}">
+
+									<label 
+										ng-if="option.value"
+										class="px_checkbox {{filterFieldClassIsActive( field.ID, option.value )}}" 
+										for="{{field.ID+$index}}">
+									</label>
+
+									<input 
+										ng-checked="filterFieldIsSelected( field.ID, option.opt, false )"
+										class="px_checkboxInput" 
+										id="{{field.ID+$index}}" 
+										type="checkbox" 
+										ng-if="!option.value" 
+										name="{{field.ID}}" 
+										value="{{option.opt}}">
+
+									<label 
+										ng-if="!option.value"
+										class="px_checkbox {{filterFieldClassIsActive( field.ID, option.opt )}}" 
+										for="{{field.ID+$index}}">
+									</label>
+									<span ng-bind-html="option.opt"></span>
+								</div>
+								<strong class="lscf-see-more" ng-if="field.options.length > 6 && 1 !== pluginSettings.generalSettings.hide_see_more_on_checkboxes_list"> {{pluginSettings.generalSettings.writing.see_more}} </strong>
+							</div>
+
+						</div>
+
+						
+						<div 
+						ng-switch-when="px_icon_check_box"
+						class="px_capf-field pxCheckField {{field.ID}}"
+						data-filter-as="{{field.type}}" data-type="px_icon_check_box" data-id="{{field.ID}}">
+
+							<h4 class="lscf-sidebar-heading">{{field.name}}</h4>
+
+							<div class="px_checkboxesList">
+
+								<div 
+									ng-class="checkboxListClassname( $index )" class="px_checkbox-li lscf-field-option {{alternativeFilteringTaxInnactiveClass(option.not_active, 'lscf-option-disabled')}}"
+									ng-repeat="option in field.options" data-index="{{$index}}">
+
+									<input
+										ng-checked="filterFieldIsSelected( field.ID, option.opt, false )"
+										class="px_checkboxInput" 
+										id="{{field.ID+$index}}" 
+										type="checkbox" 
+										name="{{field.ID}}" 
+										value="{{option.opt}}">
+
+									<label class="px_checkbox {{filterFieldClassIsActive( field.ID, option.opt )}}" for="{{field.ID+$index}}"></label>
+									<span>{{option.opt}}</span>
+
+								</div>
+
+								<strong class="lscf-see-more" ng-if="field.options.length > 4 && 1 !== pluginSettings.generalSettings.hide_see_more_on_checkboxes_list"> {{pluginSettings.generalSettings.writing.see_more}} </strong>
+
+							</div>
+
+						</div>
+
+						<div 
+						ng-switch-when="px_check_icon-text_box" 
+						class="px_capf-field pxCheckField {{field.ID}}" data-filter-as="{{field.type}}" data-type="px_icon_check_box" data-id="{{field.ID}}">
+
+							<h4 class="lscf-sidebar-heading">{{field.name}}</h4>
+
+							<div class="px_checkboxesList">
+
+								<div 
+									ng-class="checkboxListClassname( $index )" 
+									class="px_checkbox-li icon-and-text-list lscf-field-option {{alternativeFilteringTaxInnactiveClass(option.not_active, 'lscf-option-disabled')}}" 
+									ng-repeat="option in field.options" data-index="{{$index}}">
+									
+									<input 
+										ng-checked="filterFieldIsSelected( field.ID, option.opt, false )"
+										class="px_checkboxInput" 
+										id="{{field.ID+$index}}" 
+										type="checkbox" 
+										name="{{field.ID}}" 
+										value="{{option.opt}}">
+									
+									<label class="px_checkbox icon-and-text {{filterFieldClassIsActive( field.ID, option.opt )}}" for="{{field.ID+$index}}">
+										<span>
+											<img ng-src="{{option.icon}}"/>	
+											{{option.opt}}
+										</span>
+									</label>
+
+								</div>
+
+								<strong class="lscf-see-more" ng-if="field.options.length > 4 && 1 !== pluginSettings.generalSettings.hide_see_more_on_checkboxes_list"> {{pluginSettings.generalSettings.writing.see_more}} </strong>
+							</div>
+
+						</div>
+
+						<div 
+							ng-switch-when="px_check_icon-only_box"
+							class="px_capf-field pxCheckField lscf-checkfield-icons-only {{field.ID}}" 
+							data-filter-as="{{field.type}}" 
+							data-type="px_icon_check_box" 
+							data-id="{{field.ID}}">
+
+							<h4 class="lscf-sidebar-heading">{{field.name}}</h4>
+
+							<div class="px_checkboxesList">
+
+								<div 
+								 class="px_checkbox-li icon-only-list lscf-field-option {{alternativeFilteringTaxInnactiveClass(option.not_active, 'lscf-option-disabled')}}" 
+								 ng-repeat="option in field.options" 
+								 data-index="{{$index}}">
+
+									<input 
+										ng-checked="filterFieldIsSelected( field.ID, option.opt, false )"
+										class="px_checkboxInput" 
+										id="{{field.ID+$index}}"
+										type="checkbox" 
+										name="{{field.ID}}" 
+										value="{{option.opt}}">
+
+									<label 
+										class="px_checkbox icon-only {{filterFieldClassIsActive( field.ID, option.opt )}}" 
+										for="{{field.ID+$index}}">
+
+										<span>
+											<img ng-src="{{option.icon}}"/>	
+										</span>
+
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>    
+
+					<!-- Detect the Variation field which is added as custom field -->
+					<div ng-if="field.parent && field.items" class="lscf-group-type lscf-variation-field" data-group-type="cf_variation" data-variation-id="{{field.ID}}">
+
+						<div ng-switch on="field.display_as">
+
+							<div ng-switch-when="px_select_box" class="px_capf-field pxSelectField px-select-box {{field.ID}}" data-filter-as="{{field.parent.slug}}" data-id="{{field.parent.value}}">
+
+								<h4 class="lscf-sidebar-heading">{{field.name}}</h4>
+
+								<select class="custom-select">
+									<option value="0">{{pluginSettings.generalSettings.writing.select}}</option>
+									<option ng-repeat="option in field.parent.options" data-index="{{$index}}" value="{{option}}">{{option}}</option>
+								</select>
+
+							</div>
+
+
+							<div  
+								ng-switch-when="px_radio_box" 
+								class="px_capf-field pxRadioField {{field.ID}}" 
+								data-filter-as="{{field.parent.slug}}" 
+								data-id="{{field.parent.value}}">
+
+								<h4 class="lscf-sidebar-heading">{{field.name}}</h4>
+
+								<div class="px_checkboxesList">
+
+									<div class="px_checkbox-li">
+										<input class="pxRadioInput" id="{{'px-radiobox-' + field.ID}}" type="radio" name="{{field.ID}}" value="0"/>
+										<label class="pxRadioLabel" for="{{'px-radiobox-' + field.ID}}"><span>{{pluginSettings.generalSettings.writing.any}}</span></label>
+									</div>
+
+									<div ng-class="checkboxListClassname( $index )" class="px_checkbox-li lscf-field-option" ng-repeat="option in field.parent.options" data-index="{{$index}}" >
+
+										<input class="pxRadioInput" id="{{field.ID+$index}}" type="radio" name="{{field.ID}}" value="{{option}}"/>
+										<label class="pxRadioLabel" for="{{field.ID+$index}}"><span ng-bind-html="option"></span></label>                
+
+									</div>
+
+									<strong class="lscf-see-more" ng-if="field.parent.options.length > 5 && 1 !== pluginSettings.generalSettings.hide_see_more_on_checkboxes_list"> {{pluginSettings.generalSettings.writing.see_more}} </strong>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<hr class="silver"/> 
+
+				</div>
+
+				<div ng-if="field.parent && field.items" 
+					 class="lscf-group-type lscf-variation-field" 
+					 data-group-type="cf_variation" 
+					 data-variation-id="{{field.ID}}"
+					 ng-switch-when="cf_variation">
+
+					<div ng-switch on="field.display_as">
+
+						<div ng-switch-when="px_select_box" class="px_capf-field pxSelectField px-select-box {{field.ID}}" data-filter-as="{{field.parent.slug}}" data-id="{{field.parent.value}}">
+
+							<h4 class="lscf-sidebar-heading">{{field.name}}</h4>
+
+							<select class="custom-select">
+								<option value="0">{{pluginSettings.generalSettings.writing.select}}</option>
+								<option ng-repeat="option in field.parent.options" data-index="{{$index}}" value="{{option}}">{{option}}</option>
+							</select>
+
+						</div>
+
+
+						<div ng-switch-when="px_radio_box" class="px_capf-field pxRadioField {{field.ID}}" data-filter-as="{{field.parent.slug}}" data-id="{{field.parent.value}}">
+
+							<h4 class="lscf-sidebar-heading">{{field.name}}</h4>
+
+							<div class="px_checkboxesList">
+
+								<div class="px_checkbox-li">
+									<input class="pxRadioInput" id="{{'px-radiobox-' + field.ID}}" type="radio" name="{{field.ID}}" value="0"/>
+									<label class="pxRadioLabel" for="{{'px-radiobox-' + field.ID}}"><span>{{pluginSettings.generalSettings.writing.any}}</span></label>
+								</div>
+
+								<div ng-class="checkboxListClassname( $index )" class="px_checkbox-li lscf-field-option" ng-repeat="option in field.parent.options" data-index="{{$index}}" >
+
+									<input class="pxRadioInput" id="{{field.ID+$index}}" type="radio" name="{{field.ID}}" value="{{option}}"/>
+									<label class="pxRadioLabel" for="{{field.ID+$index}}"><span ng-bind-html="option"></span></label>                
+
+								</div>
+
+								<strong class="lscf-see-more" ng-if="field.parent.options.length > 5 && 1 !== pluginSettings.generalSettings.hide_see_more_on_checkboxes_list"> {{pluginSettings.generalSettings.writing.see_more}} </strong>
+
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+
+	</div>
+
+	<div
+		class="lascf-reset-filter"
+		ng-if="pluginSettings.filterSettings.reset_button.position == 'bottom' && 1 == pluginSettings.filterSettings.reset_button.status && ! actionSettings.filtersOnly">
+			<label id="lscf-reset-filters" ng-click="reset_filter()">{{pluginSettings.filterSettings.reset_button.name}}</label>
+	</div>
+
+	<div 
+		ng-if="actionSettings.filtersOnly"
+		class="lscf-search-button">
+			<a 
+				ng-click="reload_page( $event )"
+				href="{{pluginSettings.filterSettings.redirect_page + '#!/' + actionSettings.redirectURI}}">{{pluginSettings.generalSettings.writing.search}}
+			</a>
+	</div>
+
+
+	<div class="lscf-sidebar-widget" ng-bind-html="lscfSidebar.html"></div>
+
+	<label class="lscf-close-mobile-filter-overlay px-filter-label-mobile" ng-if="filterFieldsTemplate.fields.length > 4"><span>{{pluginSettings.generalSettings.writing.close}}</span></label>
+
+</div>

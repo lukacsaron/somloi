@@ -1,0 +1,96 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-05-15 18:47+0300\n"
+"PO-Revision-Date: 2018-05-15 18:51+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.7\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: settings/settings.php:167
+msgid "LSCF Sidebar"
+msgstr "LSCF Sidebar"
+
+#: shortcode.php:64
+msgid "Load more"
+msgstr "Charger plus"
+
+#: shortcode.php:65
+msgid "View"
+msgstr "Vue"
+
+#: shortcode.php:66
+msgid "Any"
+msgstr "Tout"
+
+#: shortcode.php:67
+msgid "Select"
+msgstr "Sélectionner"
+
+#: shortcode.php:68
+msgid "Filter"
+msgstr "Filtre"
+
+#: shortcode.php:69
+msgid "Add to Cart"
+msgstr "Ajouter au panier"
+
+#: shortcode.php:70
+msgid "See More"
+msgstr "Voir plus"
+
+#: shortcode.php:71
+msgid "See Less"
+msgstr "Voir moins"
+
+#: shortcode.php:72
+msgid "No Results"
+msgstr "Aucun résultat"
+
+#: shortcode.php:73
+msgid "Sort By"
+msgstr "Trier par"
+
+#: shortcode.php:74
+msgid "ASC"
+msgstr "ASC"
+
+#: shortcode.php:75
+msgid "DESC"
+msgstr "DESC"
+
+#: shortcode.php:76
+msgid "Date"
+msgstr "Date"
+
+#: shortcode.php:77
+msgid "Title"
+msgstr "Titre"
+
+#: shortcode.php:78
+msgid "Close Filter"
+msgstr "Fermer le filtre"
+
+#: shortcode.php:79
+msgid "Search"
+msgstr "Chercher"
+
+#: shortcode.php:80
+msgid "Price"
+msgstr "Prix"
+
+#: shortcode.php:81
+msgid "Grid"
+msgstr "La grille"
+
+#: shortcode.php:82
+msgid "Reset Filters"
+msgstr "Réinitialiser les filtres"

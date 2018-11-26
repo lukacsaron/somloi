@@ -1,0 +1,52 @@
+<div class="lscf-woo-grid-2 lscf-woo-grid-columns-{{gridColumns}}">
+
+	<div class="lscf-woo-grid-2-heading">
+		<ul  class="lscf-woo-grid-changer">
+			<li>Grid:</li>
+			<li class="lscf-woo-grid-type" ng-click="changeGridType($event, 2)" >2</li>
+			<li class="lscf-woo-grid-type active" ng-click="changeGridType($event, 3)">3</li>
+			<li class="lscf-woo-grid-type" ng-click="changeGridType($event, 4)">4</li>
+			<li class="lscf-woo-grid-type" ng-click="changeGridType($event, 5)">5</li>
+		</ul>
+	</div>
+
+	<div class="lscf-woo-grid-2-posts">
+		<div class="lscf-woo-grid-2-post" ng-repeat="post in filterPostsTemplate.posts" ng-class="filterPostsTemplate.filter_type == 'woocommerce' ? 'lscf-woo-grid-2-woocommerce-display ' + post.class_name : post.class_name ">
+
+			<a class="lscf-woo-grid-2-image" href="{{post.permalink}}">
+
+				<span class="lscf-woo-grid-2-featured-image" ng-if="post.woocommerce.gallery.length >= 1">
+					<span class="lscf-woo-grid-2-featured-image-front" style="background-image: url('{{post.featuredImage}}');"></span>
+					<span class="lscf-woo-grid-2-featured-image-back" style="background-image: url('{{post.woocommerce.gallery[0]}}');"></span>
+				</span>
+
+				<span ng-if="post.woocommerce.gallery.length < 1">
+						<span class="lscf-woo-grid-2-featured-image-front" style="background-image: url('{{post.featuredImage}}');"></span>
+				</span>
+
+				<div class="lscf-woo-grid-2-onsale" ng-if="post.woocommerce.sale_price!=''" >Sale!</div>
+
+				<div ng-if="post.lscf_shortcodes" class="lscf-woocommerce-grid-2-cf" ng-bind-html="post.lscf_shortcodes"></div>
+			</a>
+
+			<a data-product_id="{{post.ID}}" data-quantity="1" class="lscf-woo-grid-2-add-to-cart" href="{{post.woocommerce.add_to_cart_link}}">{{pluginSettings.generalSettings.writing.add_to_cart}}</a>
+
+			<a class="lscf-woo-grid-2-link" href="{{post.permalink}}">
+
+				<span class="lscf-woo-grid-2-li-title" ng-bind-html="post.title.long"></span>
+				<span class="lscf-li-price" ng-if="post.featured_label">{{post.featured_label.value}}</span>
+
+				<span class="lscf-li-price" ng-if="post.woocommerce.sale_price!=''">
+					<del>{{post.woocommerce.full_regular_price}}</del> <ins>{{post.woocommerce.full_sale_price}}</ins>
+				</span>
+
+				<span 
+					class="lscf-li-price" 
+					ng-if="post.woocommerce.sale_price=='' && post.woocommerce.regular_price!= '' && ! post.featured_label ">
+					{{post.woocommerce.full_regular_price}}
+				</span>
+
+			</a>
+		</div>
+	</div>
+</div>

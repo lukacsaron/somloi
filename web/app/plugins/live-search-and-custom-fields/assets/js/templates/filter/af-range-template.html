@@ -1,0 +1,105 @@
+<script type="text/html" id="px-filter-additional-fields-template">
+	
+	<div class="px_additional-fields-row px_range">
+		
+		<div class="left-side">
+			<label>Type:</label><strong>Range</strong><br/>
+			<span class="px_remove px_remove-additional-field">Remove</span>
+		</div>
+
+		<div class="right-side">
+			
+			<div class="px-frow">
+				<label>Field Name:</label>
+				<input class="px_sanitize-OnBlur" type="text" name="px_range-name-{{range_field_length}}" value=""/>
+			</div>
+
+			<div class="px-frow min-max">
+
+				<input class="px_sanitized-key" type="hidden" name="px_range-key-{{range_field_length}}" value=""/>
+				<label>Min Value:</label><input type="number" name="px_range-max-{{range_field_length}}" value=""/>
+				<label class="float-right center">Max Value:</label><input type="number" name="px_range-min-{{range_field_length}}" value=""/>
+
+			</div>
+
+			<div class="px-frow">
+			
+				<label class="wide">Range value's label(optional; ex:$,€,£)</label>
+				<input type="text" name="px_range-label-{{range_field_length}}" value=""/>
+			
+			</div>
+
+			<div class="px-frow">
+			
+				<label class="wide">Display rangel label on:</label>
+				<div class="px_custom-fields-range float-right">
+					<input 
+						type="radio" checked
+						class="px_radiobox-input"
+						name="px_range-label_position-{{range_field_length}}" 
+						value="left"
+						id="px-label-position-left">
+					<label class="px_radiobox" for="px-label-position-left"></label><span>Left</span>
+
+					&nbsp; &nbsp;
+
+					<input 
+						type="radio"
+						class="px_radiobox-input"
+						name="px_range-label_position-{{range_field_length}}" 
+						value="right"
+						id="px-label-position-right">
+					<label class="px_radiobox" for="px-label-position-right"></label><span>Right</span>
+				</div>
+			
+			</div>
+
+			<div class="px-frow">
+			
+				<label class="wide">Show range for:</label>
+				
+				<div class="px_custom-fields-range float-right">
+				
+					{{#items}}
+
+						<input class="px_radiobox-input" name="px_range-fieldID-{{range_field_length}}" type="radio" id="{{ID}}-{{range_field_length}}_radio" value="{{value}}">
+						<label class="px_radiobox" for="{{ID}}-{{range_field_length}}_radio"></label><span>{{name}}</span>
+
+					{{/items}}
+
+					{{#is_woocommerce}}
+			
+						<div class="clear"></div>
+						
+						<div class="px-woocommerce-range-fields">
+
+							<input class="px_radiobox-input" 
+								name="px_range-fieldID-{{range_field_length}}" 
+								type="radio" id="px-woocommerce-price" 
+								value="px-woocommerce-price" />
+
+							<label class="px_radiobox theme-field" for="px-woocommerce-price"></label>
+							<span>Price <i>(WooCommerce)</i></span>
+
+							
+							<input class="px_radiobox-input" 
+								name="px_range-fieldID-{{range_field_length}}" 
+								type="radio" id="px-woocommerce-inventory" 
+								value="px-woocommerce-inventory"/>
+							
+							<label class="px_radiobox theme-field" for="px-woocommerce-inventory"></label>
+							<span>Stock quantity <i>(WooCommerce)</i></span>
+
+						</div>
+
+					{{/is_woocommerce}}
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</script>

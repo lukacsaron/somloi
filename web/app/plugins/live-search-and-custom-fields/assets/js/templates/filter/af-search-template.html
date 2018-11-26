@@ -1,0 +1,36 @@
+<script type="text/html" id="px-filter-additional-fields-template">
+	
+	<div class="px_additional-fields-row px_search">
+	
+		<div class="left-side">
+			<label>Type:</label><strong>Search</strong><br/>
+			<span class="px_remove px_remove-additional-field">Remove</span>
+		</div>
+
+
+		{{#is_woocommerce}}
+		
+			<div class="right-side">
+				<label>Field Name:</label><input type="text" name="px_search_field_name_{{search_field_length}}" value="">
+				<div class="clear"></div>
+				
+				<div class="px-woocommerce-search-fields">
+					<input class="px_radiobox-input" name="px_search_by_{{search_field_length}}" checked="checked" type="radio" id="px_search_by_default_{{search_field_length}}" value="default"/>
+					<label class="px_radiobox theme-field" for="px_search_by_default_{{search_field_length}}"></label><span>Default</span>
+					<input class="px_radiobox-input" name="px_search_by_{{search_field_length}}" type="radio" id="px_search_by_sku_{{search_field_length}}" value="sku"/>
+					<label class="px_radiobox theme-field" for="px_search_by_sku_{{search_field_length}}"></label><span>Product SKU</span>
+				</div>
+
+			</div>
+
+		{{/is_woocommerce}}
+	
+		{{^is_woocommerce}}
+			<div class="right-side">
+				<label>Field Name:</label><input type="text" name="px_search_field_name" value="">
+			</div>
+		{{/is_woocommerce}}
+
+	</div>
+
+</script>

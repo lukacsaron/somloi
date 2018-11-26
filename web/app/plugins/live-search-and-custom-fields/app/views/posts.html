@@ -1,0 +1,41 @@
+<div ng-repeat="post in filterPostsTemplate.posts" class="post-list">
+
+    <div class="row block-row">
+        <div class="col-xs-4 col-sm-4 col-md-4 block-featuredImage">
+            <div class="post-featuredImage" ng-class="{'noPhoto': !post.featuredImage}">
+                <span class="post-overlay">
+                    <a href="{{post.permalink}}" class="overlay-container">
+                        <span class="glyphicon glyphicon-search"></span>
+                        <label>View</label>
+                    </a>
+                </span>
+                <a href="{{post.permalink}}">
+                    <img ng-if="post.featuredImage" ng-src="{{post.featuredImage}}" class="featImg" />
+                </a>
+            </div>
+            
+            <div class="block-price" ng-if="featuredLabel">
+               <label>{{post.featured_label}}</label>
+               
+            </div>
+        </div>
+        <div class="col-xs-8 col-sm-8 col-md-8 no-padding caption-block">
+            <div class="row">
+                <div class="col-sm-9 col-md-9 caption-container">
+                    <a ng-href="{{post.permalink}}" class="list-view lscf-title" ng-bind-html="post.title.long"></a>
+                    <a ng-href="{{post.permalink}}" class="block-view lscf-title" ng-bind-html="post.title.short"></a>
+                </div>
+                <div class="col-sm-3 col-md-3">
+                    <div class="price" ng-if="featuredLabel">
+                        <label>{{post.featured_label}}</label>
+<!--                        <span>per night</span>-->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="caption" ng-bind-html="post.content"></div> 
+            
+            
+        </div>
+    </div>
+</div>

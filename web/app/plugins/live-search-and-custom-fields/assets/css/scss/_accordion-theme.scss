@@ -1,0 +1,132 @@
+.lscf-posts-accordion {
+	
+	position:relative;
+	
+	&:after{
+		content:"";
+		display:block; width:1px; height:100%;
+		background:#e1e1e1;
+		position:absolute; top:0; left:0;
+		margin-left:2%;
+	}
+
+	&.no-border {
+		&:after{
+			display:none;
+		}
+	}
+
+	&.border-right{
+		&:after{
+			right:0; left:auto;
+			margin-right:4%;
+			margin-left:auto;
+			margin-top:3%;
+
+		}
+	}
+	
+	& .accordion-headline{
+		overflow:hidden;
+		& .px-cross{
+			float:left; margin-right:5px;
+			margin-top:5px;
+
+			-webkit-transform:rotate(0deg);
+			   -moz-transform:rotate(0deg);
+				-ms-transform:rotate(0deg);
+				    transform:rotate(0deg);
+
+			-webkit-transition:0.3s transform ease-in;
+			   -moz-transition:0.3s transform ease-in;
+				-ms-transition:0.3s transform ease-in;
+					transition:0.3s transform ease-in;
+		}
+		& .a.lscf-title{
+			float:left;
+		}
+	}
+
+	& .post-caption{
+		position:relative;
+		margin-top:10px;
+		height:0px;
+		overflow:hidden;
+		-webkit-transition:0.3s margin ease-in-out;
+		   -moz-transition:0.3s margin ease-in-out;
+			-ms-transition:0.3s margin ease-in-out;
+				transition:0.3s margin ease-in-out;
+		& .caption{
+			margin-bottom:20px;
+		}
+		&, & p{
+			font-size:1em;
+			line-height:1.25em;
+			color:#424242;
+		}
+	}
+
+	& .lscf-accordion-post.active{
+		& .accordion-headline{
+			& .px-cross{
+				-webkit-transform:rotate(225deg);
+				   -moz-transform:rotate(225deg);
+				    -ms-transform:rotate(225deg);
+				        transform:rotate(225deg);
+
+				-webkit-transition:0.4s transform ease-in;
+				   -moz-transition:0.4s transform ease-in;
+					-ms-transition:0.4s transform ease-in;
+						transition:0.4s transform ease-in;
+			}
+		}
+		& .post-caption{
+			margin-top:40px;
+			-webkit-transition:0.4s margin ease-in-out;
+			   -moz-transition:0.4s margin ease-in-out;
+				-ms-transition:0.4s margin ease-in-out;
+					transition:0.4s margin ease-in-out;
+		}
+	}
+
+	& .lscf-post-container{
+		border-bottom:1px solid #eee;
+		padding:0px;
+		margin-bottom:30px;
+		padding-bottom:10px;
+	
+	}
+
+
+	& a.lscf-title{
+		color:#424242;
+		font-size:1.1em;
+		line-height:24px;
+		text-decoration:none;
+		cursor:pointer;
+
+	}
+	
+
+	& .lscf-post-container{
+		padding:0px!important;
+		& .row{
+			padding-left:0px!important;
+		}
+		& .accordion-headline{
+			padding-left:0px!important;
+		}
+	}
+
+}
+
+.lscf-wide-posts .lscf-posts-accordion{
+
+	overflow:hidden;
+
+	&:after{display:none;}
+	& .lscf-post-container{
+		width:100%;
+		margin-left:15px; margin-right:15px;
+	}
+}
