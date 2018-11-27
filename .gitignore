@@ -19,3 +19,4 @@ web/.htaccess
 
 # Composer
 /vendor
+/web/app/plugins/live-search-and-custom-fields/

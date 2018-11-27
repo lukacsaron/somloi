@@ -206,8 +206,8 @@ function px_filter_shortcode( $atts ) {
 			'lang': '<?php echo esc_attr( $lang );?>',
 			'postType':'<?php echo esc_attr( $shortcode_attributes['post_type'] );?>',
 			'post_per_page':'<?php echo (int) $posts_per_page; ?>',
-      'plugin_url':'https://govolcanic.com/app/plugins/live-search-and-custom-fields/',
-			'site_url':'https://govolcanic.com/wp',
+      'plugin_url':'https://n-somloi.local/app/plugins/live-search-and-custom-fields/',
+			'site_url':'https://n-somloi.local/wp',
       // bedrock issue spotted by aron 
 			// 'plugin_url':'<?php echo esc_url( site_url() )?>/wp' + '-content/plugins/live-search-and-custom-fields/',
 			// 'site_url':'<?php echo esc_url( site_url() )?>',
